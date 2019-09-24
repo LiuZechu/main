@@ -9,8 +9,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Remark {
 
-    // public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
-
     public final String value;
 
     /**
@@ -19,8 +17,15 @@ public class Remark {
      * @param remark A remark for a person.
      */
     public Remark(String remark) {
+        if (remark == null) {
+            remark = "";
+        }
         requireNonNull(remark);
         value = remark;
+    }
+
+    public Remark() {
+        value = "";
     }
 
     @Override
