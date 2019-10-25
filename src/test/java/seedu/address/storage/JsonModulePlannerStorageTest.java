@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.jupiter.api.io.TempDir;
-
 import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ModulePlanner;
@@ -31,7 +31,7 @@ public class JsonModulePlannerStorageTest {
     @TempDir
     public Path testFolder;
 
-    public ModulesInfo modulesInfo = TypicalModulesInfo.getTypicalModulesInfo();
+    private ModulesInfo modulesInfo = TypicalModulesInfo.getTypicalModulesInfo();
 
     @Test
     public void readModulePlanner_nullFilePath_throwsNullPointerException() {
@@ -39,8 +39,8 @@ public class JsonModulePlannerStorageTest {
     }
 
     private java.util.Optional<ReadOnlyModulePlanner> readModulePlanner(String filePath) throws Exception {
-        return new JsonModulePlannerStorage(Paths.get(filePath)).
-                readModulePlanner(addToTestDataPathIfNotNull(filePath), modulesInfo);
+        return new JsonModulePlannerStorage(Paths.get(filePath))
+                .readModulePlanner(addToTestDataPathIfNotNull(filePath), modulesInfo);
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -61,8 +61,8 @@ public class JsonModulePlannerStorageTest {
 
     @Test
     public void readModulePlanner_invalidStudyPlanModulePlanner_throwDataConversionException() {
-        assertThrows(DataConversionException.class,
-                () -> readModulePlanner("invalidStudyPlanModulePlanner.json"));
+        assertThrows(
+                DataConversionException.class, () -> readModulePlanner("invalidStudyPlanModulePlanner.json"));
     }
 
     @Test

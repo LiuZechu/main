@@ -33,13 +33,13 @@ public class JsonAdaptedStudyPlanTest {
     private static final int VALID_TOTAL_NUMBER = 10;
     private static final String VALID_TITLE = SP_1.getTitle().toString();
     private static final List<JsonAdaptedSemester> VALID_SEMESTERS =
-            SP_1.getSemesters().asUnmodifiableObservableList().stream().
-                    map(JsonAdaptedSemester::new).collect(Collectors.toList());
+            SP_1.getSemesters().asUnmodifiableObservableList().stream()
+                    .map(JsonAdaptedSemester::new).collect(Collectors.toList());
     private static final List<JsonAdaptedModule> VALID_MODULES =
             SP_1.getModules().values().stream().map(JsonAdaptedModule::new).collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS =
-            SP_1.getTags().asUnmodifiableObservableList().stream().
-                    map(JsonAdaptedTag::new).collect(Collectors.toList());
+            SP_1.getTags().asUnmodifiableObservableList().stream()
+                    .map(JsonAdaptedTag::new).collect(Collectors.toList());
     private static final SemesterName VALID_CURRENT_SEMESTER = SP_1.getCurrentSemester();
 
     @Test
