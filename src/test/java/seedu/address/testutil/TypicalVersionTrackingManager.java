@@ -55,20 +55,22 @@ public class TypicalVersionTrackingManager {
     }
 
     /**
-     * Returns a typical commit list for testing.
+     * Returns a typical commit list of two commits for testing.
      * @return
      */
-    public static CommitList getTypicalCommitList() {
+    public static CommitList getTypicalCommitList() throws CloneNotSupportedException {
+        // tests may fail if this method is changed.
         CommitList testCommitList = new CommitList();
         testCommitList.commitStudyPlan(SP_1, SAMPLE_COMMIT_MESSAGE_1);
         // add a module
-        SP_1.addModuleToSemester(new ModuleCode("CS1101S"), SemesterName.Y2S2);
-        testCommitList.commitStudyPlan(SP_1, SAMPLE_COMMIT_MESSAGE_2);
+        StudyPlan planAfterAddingModule = SP_1.clone();
+        planAfterAddingModule.addModuleToSemester(new ModuleCode("CS1101S"), SemesterName.Y2S2);
+        testCommitList.commitStudyPlan(planAfterAddingModule, SAMPLE_COMMIT_MESSAGE_2);
         return testCommitList;
     }
 
     /**
-     * Returns a typical StudyPlanCommitManager for testing.
+     * Returns a typical StudyPlanCommitManager containing two commits for testing.
      * @return
      */
     public static StudyPlanCommitManager getTypicalStudyPlanCommitManager() {

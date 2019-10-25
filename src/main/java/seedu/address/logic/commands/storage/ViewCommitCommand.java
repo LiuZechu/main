@@ -61,6 +61,8 @@ public class ViewCommitCommand extends Command {
             return new CommandResult<>(MESSAGE_SUCCESS, ResultViewType.STUDY_PLAN, semesters);
         } catch (StudyPlanCommitManagerNotFoundException e) {
             return new CommandResult(MESSAGE_NO_COMMIT_HISTORY);
+        } catch (IndexOutOfBoundsException e) {
+            return new CommandResult(MESSAGE_NO_SUCH_COMMIT);
         }
 
     }
