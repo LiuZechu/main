@@ -21,7 +21,7 @@ public class StudyPlanCommitManagerTest {
     @Test
     public void getStudyPlanIndex() {
         StudyPlanCommitManager manager = TypicalVersionTrackingManager.getTypicalStudyPlanCommitManager();
-        assertEquals(manager.getStudyPlanIndex(), 1);
+        assertEquals(manager.getStudyPlanIndex(), SP_1.getIndex());
     }
 
     @Test
