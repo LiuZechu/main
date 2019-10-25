@@ -1,7 +1,6 @@
 package seedu.address.model.versiontracking;
 
 import seedu.address.model.studyplan.StudyPlan;
-import seedu.address.model.tag.UserTag;
 
 /**
  * Represents a commit of a given study plan.

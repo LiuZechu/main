@@ -8,6 +8,9 @@ import seedu.address.model.versiontracking.CommitList;
 import seedu.address.model.versiontracking.StudyPlanCommitManager;
 import seedu.address.model.versiontracking.VersionTrackingManager;
 
+/**
+ * A class to generate sample version tracking related classes for testing.
+ */
 public class TypicalVersionTrackingManager {
 
     // original study plans (to be changed before commit)
@@ -20,9 +23,9 @@ public class TypicalVersionTrackingManager {
     public static final String SAMPLE_COMMIT_MESSAGE_3 = "third commit";
 
     // committed study plans
-    private StudyPlan CLONED_SP_1 = SP_1.clone();
-    private StudyPlan CLONED_SP_2 = SP_2.clone();
-    private StudyPlan CLONED_SP_3 = SP_3.clone();
+    private StudyPlan clonedSp1 = SP_1.clone();
+    private StudyPlan clonedSp2 = SP_2.clone();
+    private StudyPlan clonedSp3 = SP_3.clone();
 
     public TypicalVersionTrackingManager() throws CloneNotSupportedException {
         /*
