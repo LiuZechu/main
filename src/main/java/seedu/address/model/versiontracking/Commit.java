@@ -1,6 +1,7 @@
 package seedu.address.model.versiontracking;
 
 import seedu.address.model.studyplan.StudyPlan;
+import seedu.address.model.tag.UserTag;
 
 /**
  * Represents a commit of a given study plan.
@@ -31,5 +32,13 @@ public class Commit {
     public String toString() {
         return "Commit no. " + String.valueOf(studyPlan.getIndex()) + ".%1$d"
                 + " " + commitMessage;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Commit // instanceof handles nulls
+                && commitMessage.equals(((Commit) other).commitMessage)
+                && studyPlan.equals(((Commit) other).getStudyPlan())); // state check
     }
 }
