@@ -9,8 +9,6 @@ import java.util.List;
 
 import seedu.address.model.ModulePlanner;
 import seedu.address.model.ModulesInfo;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.semester.SemesterName;
 import seedu.address.model.studyplan.StudyPlan;
 import seedu.address.model.studyplan.Title;
 
@@ -35,9 +33,8 @@ public class TypicalStudyPlans {
     public static final StudyPlan SP_5 = new StudyPlan(new Title("fifth study plan"), modulesInfo,
             SP_2_SEMESTER_NAME);
 
-    // TODO: think about this
-
     private TypicalStudyPlans() {
+        /*
         SP_1.addModuleToSemester(new ModuleCode("CS1101S"), SemesterName.Y1S1);
         SP_1.addModuleToSemester(new ModuleCode("CS2030"), SemesterName.Y1S2);
         SP_1.addModuleToSemester(new ModuleCode("CS2040S"), SemesterName.Y2S1);
@@ -54,6 +51,7 @@ public class TypicalStudyPlans {
 
         SP_5.addModuleToSemester(new ModuleCode("CS1101S"), SemesterName.Y1S1);
         SP_5.addModuleToSemester(new ModuleCode("CS1231S"), SemesterName.Y1S1);
+         */
     } // prevents instantiation
 
     /**
