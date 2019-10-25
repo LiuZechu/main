@@ -9,7 +9,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.semester.Semester;
 import seedu.address.model.studyplan.StudyPlan;
-import seedu.address.model.studyplan.exceptions.StudyPlanNotFoundException;
 import seedu.address.model.versiontracking.Commit;
 import seedu.address.model.versiontracking.CommitList;
 import seedu.address.model.versiontracking.exception.StudyPlanCommitManagerNotFoundException;
@@ -27,6 +26,8 @@ public class ViewCommitCommand extends Command {
             + "Parameters: PLAN_INDEX.COMMIT_NUMBER (both must be non-negative integers)\n";
     public static final String MESSAGE_SUCCESS = "Here is your study plan for this commit. Please do not modify it.";
     public static final String MESSAGE_NO_SUCH_COMMIT = "The commit index you've entered is invalid!";
+    public static final String MESSAGE_NO_STUDYPLAN = "There's no active study plan. Create now!";
+    public static final String MESSAGE_NOT_ACTIVE_STUDYPLAN = "The study plan index does not match the active one.";
 
     private int studyPlanIndex;
     private int commitNumber;
@@ -40,11 +41,14 @@ public class ViewCommitCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        // TODO: THIS IS NOT IMPLEMENTED YET.
-
         StudyPlan activeStudyPlan = model.getActiveStudyPlan();
         if (activeStudyPlan == null) {
-            throw new StudyPlanNotFoundException();
+            return new CommandResult(MESSAGE_NO_STUDYPLAN);
+        }
+
+        // if the index is different from active study plan, throw an error
+        if (activeStudyPlan.getIndex() != studyPlanIndex) {
+            return new CommandResult(MESSAGE_NOT_ACTIVE_STUDYPLAN);
         }
 
         try {

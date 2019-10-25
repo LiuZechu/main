@@ -16,7 +16,6 @@ public class DefaultStudyPlanCommandParser implements Parser<DefaultStudyPlanCom
      * @throws ParseException if the user input does not conform the expected format.
      */
     public DefaultStudyPlanCommand parse(String args) throws ParseException {
-        String studyPlanName = args.trim();
         return new DefaultStudyPlanCommand();
     }
 }

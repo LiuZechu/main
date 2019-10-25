@@ -22,14 +22,6 @@ public class DefaultStudyPlanCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New sample study plan added!";
     public static final String MESSAGE_DUPLICATE_STUDYPLAN = "This study plan already exists in the module planner";
 
-
-    /**
-     * Creates an DefaultStudyPlanCommand to add the recommended {@code StudyPlan}.
-     */
-    public DefaultStudyPlanCommand() {
-
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
