@@ -19,7 +19,7 @@ import seedu.address.ui.ResultViewType;
 public class ViewDefaultTagsCommand extends Command {
 
     public static final String COMMAND_WORD = "viewdefaulttags";
-
+    public static final String HELP_MESSAGE = COMMAND_WORD + ": Viewing default tags";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : Shows all default tags. "
             + "Example: "
             + "viewdefaulttags";
@@ -44,5 +44,12 @@ public class ViewDefaultTagsCommand extends Command {
 
         return new CommandResult(MESSAGE_SUCCESS, ResultViewType.TAG, defaultTags);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewDefaultTagsCommand); // instanceof handles nulls and type check
+    }
+
 
 }
