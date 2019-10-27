@@ -81,7 +81,8 @@ public class StudyPlan implements Cloneable {
      * This constructor is used for {@code JsonAdaptedStudyPlan}.
      */
     public StudyPlan(Title modelTitle, int modelIndex, List<Semester> modelSemesters,
-                     HashMap<String, Module> modelModules, List<Tag> modelTags, SemesterName currentSemester) {
+                     HashMap<String, Module> modelModules, List<Tag> modelTags,
+                     SemesterName currentSemester, List<Tag> modelStudyPlanTags) {
         this.title = modelTitle;
         this.index = modelIndex;
         this.semesters = new UniqueSemesterList();
@@ -93,8 +94,11 @@ public class StudyPlan implements Cloneable {
             moduleTags.addTag(tag);
         }
         this.studyPlanTags = new UniqueTagList();
-        // TODO add study plan tags
         this.currentSemester = currentSemester;
+        this.studyPlanTags = new UniqueTagList();
+        for (Tag tag : modelStudyPlanTags) {
+            studyPlanTags.addTag(tag);
+        }
     }
 
     public void setTitle(Title title) {

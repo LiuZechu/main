@@ -39,6 +39,9 @@ public class JsonAdaptedStudyPlanTest {
             SP_1.getModuleTags().asUnmodifiableObservableList().stream()
                     .map(JsonAdaptedTag::new).collect(Collectors.toList());
     private static final SemesterName VALID_CURRENT_SEMESTER = SP_1.getCurrentSemester();
+    private static final List<JsonAdaptedTag> VALID_STUDY_PLAN_TAGS =
+            SP_1.getStudyPlanTags().asUnmodifiableObservableList().stream()
+                    .map(JsonAdaptedTag::new).collect(Collectors.toList());
 
     @Test
     public void toModelType_validStudyPlanDetails_returnsStudyPlan() throws Exception {
@@ -94,7 +97,7 @@ public class JsonAdaptedStudyPlanTest {
     public void toModelType_invalidTitle_throwsIllegalValueException() {
         JsonAdaptedStudyPlan studyPlan =
                 new JsonAdaptedStudyPlan(VALID_TOTAL_NUMBER, INVALID_TITLE, VALID_INDEX,
-                        VALID_SEMESTERS, VALID_MODULES, VALID_TAGS, VALID_CURRENT_SEMESTER);
+                        VALID_SEMESTERS, VALID_MODULES, VALID_TAGS, VALID_CURRENT_SEMESTER, VALID_STUDY_PLAN_TAGS);
         String expectedMessage = Title.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, studyPlan::toModelType);
     }
@@ -102,7 +105,7 @@ public class JsonAdaptedStudyPlanTest {
     @Test
     public void toModelType_nullTitle_throwsIllegalValueException() {
         JsonAdaptedStudyPlan studyPlan = new JsonAdaptedStudyPlan(VALID_TOTAL_NUMBER, null, VALID_INDEX,
-                VALID_SEMESTERS, VALID_MODULES, VALID_TAGS, VALID_CURRENT_SEMESTER);
+                VALID_SEMESTERS, VALID_MODULES, VALID_TAGS, VALID_CURRENT_SEMESTER, VALID_STUDY_PLAN_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, studyPlan::toModelType);
     }
