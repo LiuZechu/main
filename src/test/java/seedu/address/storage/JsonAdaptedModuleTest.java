@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TypicalModule;
 
 /**
- * A test class for JsonAdaptedCommit.
+ * A test class for JsonAdaptedModule.
  */
 public class JsonAdaptedModuleTest {
 
@@ -28,7 +28,7 @@ public class JsonAdaptedModuleTest {
     private static final List<JsonAdaptedTag> VALID_USER_TAGS = new ArrayList<>();
 
     @Test
-    public void toModelType_validModuleDetails_returnsModules() throws Exception {
+    public void toModelType_validModuleDetails_returnsModule() throws Exception {
         Module typicalModule = TypicalModule.CS3244;
         JsonAdaptedModule adaptedModule = new JsonAdaptedModule(typicalModule);
         Module loadedModule = adaptedModule.toModelType();
