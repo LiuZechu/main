@@ -45,12 +45,35 @@ public class JsonAdaptedStudyPlanTest {
 
     @Test
     public void toModelType_validStudyPlanDetails_returnsStudyPlan() throws Exception {
-        boolean result = true;
-
         JsonAdaptedStudyPlan adaptedStudyPlan = new JsonAdaptedStudyPlan(SP_1);
         StudyPlan skeletalStudyPlan = adaptedStudyPlan.toModelType();
 
+        assertTrue(studyPlanLoadedCorrectly(adaptedStudyPlan, skeletalStudyPlan));
+    }
+
+    @Test
+    public void toModelType_invalidTitle_throwsIllegalValueException() {
+        JsonAdaptedStudyPlan studyPlan =
+                new JsonAdaptedStudyPlan(VALID_TOTAL_NUMBER, INVALID_TITLE, VALID_INDEX,
+                        VALID_SEMESTERS, VALID_MODULES, VALID_TAGS, VALID_CURRENT_SEMESTER, VALID_STUDY_PLAN_TAGS);
+        String expectedMessage = Title.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, studyPlan::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullTitle_throwsIllegalValueException() {
+        JsonAdaptedStudyPlan studyPlan = new JsonAdaptedStudyPlan(VALID_TOTAL_NUMBER, null, VALID_INDEX,
+                VALID_SEMESTERS, VALID_MODULES, VALID_TAGS, VALID_CURRENT_SEMESTER, VALID_STUDY_PLAN_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, studyPlan::toModelType);
+    }
+
+    /**
+     * Returns a boolean to indicate whether the study plan has been loaded correctly from JSON.
+     */
+    public static boolean studyPlanLoadedCorrectly(JsonAdaptedStudyPlan adaptedStudyPlan, StudyPlan skeletalStudyPlan) {
         // test whether this study plan is rendered properly. compare between original and loaded (from Json)
+        boolean result = true;
         // semesters
         List<Semester> originalSemesters = SP_1.getSemesters().asUnmodifiableObservableList();
         List<Semester> loadedSemesters = skeletalStudyPlan.getSemesters().asUnmodifiableObservableList();
@@ -90,24 +113,17 @@ public class JsonAdaptedStudyPlanTest {
             }
         }
 
-        assertTrue(result);
+        // study plan tags
+        List<Tag> originalStudyPlanTags = SP_1.getStudyPlanTags().asUnmodifiableObservableList();
+        List<Tag> loadedStudyPlanTags = skeletalStudyPlan.getStudyPlanTags().asUnmodifiableObservableList();
+        for (int i = 0; i < originalStudyPlanTags.size(); i++) {
+            Tag originalStudyPlanTag = originalStudyPlanTags.get(i);
+            Tag loadedStudyPlanTag = loadedStudyPlanTags.get(i);
+            if (!originalStudyPlanTag.equals(loadedStudyPlanTag)) {
+                result = false;
+            }
+        }
+        
+        return result;
     }
-
-    @Test
-    public void toModelType_invalidTitle_throwsIllegalValueException() {
-        JsonAdaptedStudyPlan studyPlan =
-                new JsonAdaptedStudyPlan(VALID_TOTAL_NUMBER, INVALID_TITLE, VALID_INDEX,
-                        VALID_SEMESTERS, VALID_MODULES, VALID_TAGS, VALID_CURRENT_SEMESTER, VALID_STUDY_PLAN_TAGS);
-        String expectedMessage = Title.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, studyPlan::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullTitle_throwsIllegalValueException() {
-        JsonAdaptedStudyPlan studyPlan = new JsonAdaptedStudyPlan(VALID_TOTAL_NUMBER, null, VALID_INDEX,
-                VALID_SEMESTERS, VALID_MODULES, VALID_TAGS, VALID_CURRENT_SEMESTER, VALID_STUDY_PLAN_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, studyPlan::toModelType);
-    }
-
 }
