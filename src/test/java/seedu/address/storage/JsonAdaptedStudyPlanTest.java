@@ -48,7 +48,7 @@ public class JsonAdaptedStudyPlanTest {
         JsonAdaptedStudyPlan adaptedStudyPlan = new JsonAdaptedStudyPlan(SP_1);
         StudyPlan skeletalStudyPlan = adaptedStudyPlan.toModelType();
 
-        assertTrue(studyPlanLoadedCorrectly(adaptedStudyPlan, skeletalStudyPlan));
+        assertTrue(studyPlanLoadedCorrectly(SP_1, skeletalStudyPlan));
     }
 
     @Test
@@ -71,11 +71,11 @@ public class JsonAdaptedStudyPlanTest {
     /**
      * Returns a boolean to indicate whether the study plan has been loaded correctly from JSON.
      */
-    public static boolean studyPlanLoadedCorrectly(JsonAdaptedStudyPlan adaptedStudyPlan, StudyPlan skeletalStudyPlan) {
+    public static boolean studyPlanLoadedCorrectly(StudyPlan originalStudyPlan, StudyPlan skeletalStudyPlan) {
         // test whether this study plan is rendered properly. compare between original and loaded (from Json)
         boolean result = true;
         // semesters
-        List<Semester> originalSemesters = SP_1.getSemesters().asUnmodifiableObservableList();
+        List<Semester> originalSemesters = originalStudyPlan.getSemesters().asUnmodifiableObservableList();
         List<Semester> loadedSemesters = skeletalStudyPlan.getSemesters().asUnmodifiableObservableList();
         for (int i = 0; i < originalSemesters.size(); i++) {
             SemesterName originalSemesterName = originalSemesters.get(i).getSemesterName();
@@ -86,13 +86,13 @@ public class JsonAdaptedStudyPlanTest {
         }
 
         // title
-        assertEquals(SP_1.getTitle(), skeletalStudyPlan.getTitle());
+        assertEquals(originalStudyPlan.getTitle(), skeletalStudyPlan.getTitle());
 
         // index
-        assertEquals(SP_1.getIndex(), skeletalStudyPlan.getIndex());
+        assertEquals(originalStudyPlan.getIndex(), skeletalStudyPlan.getIndex());
 
         // modules
-        HashMap<String, Module> originalModules = SP_1.getModules();
+        HashMap<String, Module> originalModules = originalStudyPlan.getModules();
         HashMap<String, Module> loadedModules = skeletalStudyPlan.getModules();
         for (Module module : originalModules.values()) {
             String originalModuleCode = module.getModuleCode().value;
@@ -103,7 +103,7 @@ public class JsonAdaptedStudyPlanTest {
         }
 
         // tags
-        List<Tag> originalTags = SP_1.getModuleTags().asUnmodifiableObservableList();
+        List<Tag> originalTags = originalStudyPlan.getModuleTags().asUnmodifiableObservableList();
         List<Tag> loadedTags = skeletalStudyPlan.getModuleTags().asUnmodifiableObservableList();
         for (int i = 0; i < originalTags.size(); i++) {
             Tag originalTag = originalTags.get(i);
@@ -114,7 +114,7 @@ public class JsonAdaptedStudyPlanTest {
         }
 
         // study plan tags
-        List<Tag> originalStudyPlanTags = SP_1.getStudyPlanTags().asUnmodifiableObservableList();
+        List<Tag> originalStudyPlanTags = originalStudyPlan.getStudyPlanTags().asUnmodifiableObservableList();
         List<Tag> loadedStudyPlanTags = skeletalStudyPlan.getStudyPlanTags().asUnmodifiableObservableList();
         for (int i = 0; i < originalStudyPlanTags.size(); i++) {
             Tag originalStudyPlanTag = originalStudyPlanTags.get(i);

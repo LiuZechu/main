@@ -33,13 +33,20 @@ public class JsonAdaptedCommitTest {
         // test equality between the study plan stored
         JsonAdaptedStudyPlan adaptedStudyPlan = adaptedCommit.getStudyPlan();
         StudyPlan skeletalStudyPlan = adaptedStudyPlan.toModelType();
-        assertTrue(JsonAdaptedStudyPlanTest.studyPlanLoadedCorrectly(adaptedStudyPlan, skeletalStudyPlan));
+        assertTrue(JsonAdaptedStudyPlanTest.studyPlanLoadedCorrectly(typicalCommit.getStudyPlan(), skeletalStudyPlan));
     }
 
     @Test
     public void toModelType_nullCommitMessage_throwsIllegalValueException() {
         JsonAdaptedCommit commit = new JsonAdaptedCommit(new JsonAdaptedStudyPlan(VALID_STUDY_PLAN), null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "commit message");
+        assertThrows(IllegalValueException.class, expectedMessage, commit::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullStudyPlan_throwsIllegalValueException() {
+        JsonAdaptedCommit commit = new JsonAdaptedCommit(null, VALID_COMMIT_MESSAGE);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StudyPlan.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, commit::toModelType);
     }
 
