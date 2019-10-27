@@ -123,7 +123,6 @@ public class JsonAdaptedStudyPlanTest {
                 result = false;
             }
         }
-        
         return result;
     }
 }

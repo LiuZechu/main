@@ -17,11 +17,10 @@ import seedu.address.testutil.TypicalVersionTrackingManager;
  * A test class for JsonAdaptedCommit.
  */
 public class JsonAdaptedCommitTest {
-    
-    private static final String VALID_COMMIT_MESSAGE = 
+
+    private static final String VALID_COMMIT_MESSAGE =
             TypicalVersionTrackingManager.getTypicalCommit(1).getCommitMessage();
     private static final StudyPlan VALID_STUDY_PLAN = SP_1;
-    
 
     @Test
     public void toModelType_validCommitDetails_returnsCommit() throws Exception {
@@ -39,9 +38,9 @@ public class JsonAdaptedCommitTest {
 
     @Test
     public void toModelType_nullCommitMessage_throwsIllegalValueException() {
-        JsonAdaptedCommit Commit = new JsonAdaptedCommit(new JsonAdaptedStudyPlan(VALID_STUDY_PLAN), null);
+        JsonAdaptedCommit commit = new JsonAdaptedCommit(new JsonAdaptedStudyPlan(VALID_STUDY_PLAN), null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "commit message");
-        assertThrows(IllegalValueException.class, expectedMessage, Commit::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, commit::toModelType);
     }
 
 }
