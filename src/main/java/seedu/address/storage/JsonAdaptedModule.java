@@ -77,7 +77,7 @@ class JsonAdaptedModule {
         }
 
         try {
-            Color modelColor = Color.valueOf(color);
+            Color.valueOf(color);
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(Color.MESSAGE_CONSTRAINTS);
         }
