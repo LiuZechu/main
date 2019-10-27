@@ -11,7 +11,6 @@ import seedu.address.testutil.TypicalVersionTrackingManager;
  * A test class for JsonAdaptedStudyPlanCommitManager.
  */
 public class JsonAdaptedStudyPlanCommitManagerTest {
-    
     @Test
     public void toModelType_validStudyPlanCommitManagerDetails_returnsStudyPlanCommitManager() throws Exception {
         StudyPlanCommitManager typicalStudyPlanCommitManager =
