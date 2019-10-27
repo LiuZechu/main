@@ -46,7 +46,8 @@ public class JsonAdaptedModuleTest {
     @Test
     public void toModelType_nullModuleCode_throwsIllegalValueException() {
         JsonAdaptedModule module = new JsonAdaptedModule(null, VALID_COLOR, VALID_USER_TAGS);
-        String expectedMessage = String.format(JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT,
+                ModuleCode.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
     }
 
@@ -61,7 +62,8 @@ public class JsonAdaptedModuleTest {
     @Test
     public void toModelType_nullColor_throwsIllegalValueException() {
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_MODULE_CODE, null, VALID_USER_TAGS);
-        String expectedMessage = String.format(JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT, Color.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT,
+                Color.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
     }
 
