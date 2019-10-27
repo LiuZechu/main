@@ -61,6 +61,7 @@ public class StudyPlan implements Cloneable {
         setDefaultSemesters();
 
         // switch the current active plan to the newly created one. Reason: user can directly add modules to it.
+        isActivated = true;
 
         tags = new UniqueTagList();
         tags.initDefaultTags();

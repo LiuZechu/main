@@ -36,7 +36,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     private final ModulesInfo modulesInfo;
     private final VersionTrackingManager versionTrackingManager;
     private StudyPlan activeStudyPlan;
-    private SemesterName currentSemester;
+    private SemesterName currentSemester = SemesterName.Y1S1; // default value
 
     public ModulePlanner() {
         studyPlans = new UniqueStudyPlanList();
@@ -180,7 +180,9 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             UniqueModuleList uniqueModuleList = semester.getModules();
             for (Module skeletalModule : uniqueModuleList) {
                 Module actualModule = megaModuleHash.get(skeletalModule.getModuleCode().toString());
-                uniqueModuleList.setModule(skeletalModule, actualModule);
+                if (skeletalModule != actualModule) {
+                    uniqueModuleList.setModule(skeletalModule, actualModule);
+                }
             }
         }
 

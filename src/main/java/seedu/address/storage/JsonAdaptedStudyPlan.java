@@ -98,9 +98,9 @@ class JsonAdaptedStudyPlan {
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
-        // if (!Name.isValidName(name)) {
-        //    throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        // }
+        if (!Title.isValidTitle(title)) {
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
+        }
         final Title modelTitle = new Title(title);
 
         if (index == 0) {
