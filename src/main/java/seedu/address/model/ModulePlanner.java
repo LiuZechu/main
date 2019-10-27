@@ -181,7 +181,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             UniqueModuleList uniqueModuleList = semester.getModules();
             for (Module skeletalModule : uniqueModuleList) {
                 Module actualModule = megaModuleHash.get(skeletalModule.getModuleCode().toString());
-                if (skeletalModule != actualModule) {
+                // if (skeletalModule != actualModule) {
+                if (!skeletalModule.equals(actualModule)) {
                     uniqueModuleList.setModule(skeletalModule, actualModule);
                 }
             }
