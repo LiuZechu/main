@@ -2,6 +2,7 @@ package seedu.address.logic.commands.storage;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModulesInfo.getTypicalModulesInfo;
+import static seedu.address.testutil.TypicalStudyPlans.SP_1;
 import static seedu.address.testutil.TypicalStudyPlans.getTypicalModulePlanner;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,9 +12,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.studyplan.StudyPlan;
-import seedu.address.testutil.StudyPlanBuilder;
-
 
 /**
  * Contains integration tests (interaction with the Model) for {@code CommitStudyPlanCommand}.
@@ -30,10 +28,8 @@ public class CommitStudyPlanCommandTest {
 
     @Test
     public void execute_commitStudyPlan_success() {
-        StudyPlan validStudyPlan = new StudyPlanBuilder().build();
-
         Model expectedModel = new ModelManager(model.getModulePlanner(), new UserPrefs(), getTypicalModulesInfo());
-        expectedModel.activateStudyPlan(1);
+        expectedModel.activateStudyPlan(SP_1.getIndex());
         expectedModel.commitActiveStudyPlan(COMMIT_MESSAGE);
 
         CommitStudyPlanCommand command = new CommitStudyPlanCommand(COMMIT_MESSAGE);
