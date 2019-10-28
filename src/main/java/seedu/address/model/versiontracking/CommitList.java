@@ -81,9 +81,9 @@ public class CommitList {
         if (commits.size() == 0) {
             toReturn.append("There are zero commits in this study plan!");
         } else {
-            for (Commit commit : commits) {
-                int index = commits.indexOf(commit);
-                toReturn.append(String.format(commit.toString(), index) + "\n");
+            for (int i = 0; i < commits.size(); i++) { // do not change to for commit : commits due to Commit#equals()
+                Commit commit = commits.get(i);
+                toReturn.append(String.format(commit.toString(), i) + "\n");
             }
         }
 
