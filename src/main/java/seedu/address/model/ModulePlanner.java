@@ -494,11 +494,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         }
 
         // check version tracking manager
-        if (!versionTrackingManager.equals(((ModulePlanner) other).versionTrackingManager)) {
-            return false;
-        }
-
-        return true;
+        return versionTrackingManager.equals(((ModulePlanner) other).versionTrackingManager);
     }
 
     @Override
