@@ -90,4 +90,29 @@ public class CommitList {
         return toReturn.toString();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true; // short circuit if identical objects
+        }
+
+        if (!(obj instanceof CommitList)) {
+            return false; // handle null pointers
+        }
+
+        // check all commits in the list
+        try {
+            for (int i = 0; i < commits.size(); i++) {
+                Commit commit1 = commits.get(i);
+                Commit commit2 = ((CommitList) obj).commits.get(i);
+                if (!commit1.equals(commit2)) {
+                    return false;
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+
+        return true;
+    }
 }
