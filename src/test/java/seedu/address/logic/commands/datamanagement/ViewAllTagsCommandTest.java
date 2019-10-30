@@ -38,11 +38,11 @@ public class ViewAllTagsCommandTest {
 
         // construct list of tags that should be shown
         UniqueTagList expectedList = new UniqueTagList();
-        expectedList.initDefaultTags();;
+        expectedList.initDefaultTags();
         expectedList.addTag(validTagOne);
         expectedList.addTag(validTagTwo);
 
-        CommandResult expectedCommandResult = new CommandResult(ViewAllTagsCommand.MESSAGE_SUCCESS,
+        CommandResult expectedCommandResult = new CommandResult<Tag>(ViewAllTagsCommand.MESSAGE_SUCCESS,
                 ResultViewType.TAG, expectedList.asUnmodifiableObservableList());
         assertCommandSuccess(viewAllTagsCommand, model, expectedCommandResult, model);
     }
@@ -62,7 +62,7 @@ public class ViewAllTagsCommandTest {
         UniqueTagList expectedList = new UniqueTagList();
         expectedList.initDefaultTags();
 
-        CommandResult expectedCommandResult = new CommandResult(ViewAllTagsCommand.MESSAGE_SUCCESS,
+        CommandResult expectedCommandResult = new CommandResult<Tag>(ViewAllTagsCommand.MESSAGE_SUCCESS,
                 ResultViewType.TAG, expectedList.asUnmodifiableObservableList());
         assertCommandSuccess(viewAllTagsCommand, model, expectedCommandResult, model);
 

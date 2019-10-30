@@ -20,6 +20,7 @@ import seedu.address.ui.ResultViewType;
 public class FindModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "findmod";
+    public static final String HELP_MESSAGE = COMMAND_WORD + ": Finding modules using the module code";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the semester in which the specified module "
             + "is located at.\n"
@@ -63,12 +64,13 @@ public class FindModuleCommand extends Command {
 
     /**
      * Finds the semesters in which the module is located.
+     *
      * @param semesterList The list of semesters in the active study plan
      * @return A UniqueSemesterList containing the semesters where the module is located.
      */
     private UniqueSemesterList findMod(UniqueSemesterList semesterList) {
         UniqueSemesterList locations = new UniqueSemesterList();
-        for (Semester semester: semesterList) {
+        for (Semester semester : semesterList) {
             UniqueModuleList moduleList = semester.getModules();
             if (moduleList.contains(moduleCode)) {
                 locations.add(semester);

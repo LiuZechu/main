@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.HashMap;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
@@ -28,6 +29,16 @@ import seedu.address.ui.ResultViewType;
 
 public class ViewModuleTagsCommandTest {
 
+    private Tag validTagOne;
+    private Tag validTagTwo;
+
+    @BeforeEach
+    public void setUp() {
+        // construct user tags
+        validTagOne = new TagBuilder().buildTestUserTag();
+        validTagTwo = new TagBuilder().buildUserTag("otherUserTag");
+    }
+
     @Test
     public void constructor_nullModuleCode_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new ViewModuleTagsCommand(null));
@@ -35,10 +46,6 @@ public class ViewModuleTagsCommandTest {
 
     @Test
     public void execute_userTagsPresentInModule_allModuleTagsShownSuccessful() {
-        // construct user tags
-        Tag validTagOne = new TagBuilder().buildTestUserTag();
-        Tag validTagTwo = new TagBuilder().buildUserTag("otherUserTag");
-
         // construct module with one user tag
         Module cs1231s = new ModuleBuilder().withModuleCode("CS1231S").withTags(validTagOne).build();
         HashMap<String, Module> moduleHashMap = new HashMap<String, Module>();
@@ -50,7 +57,7 @@ public class ViewModuleTagsCommandTest {
 
         // assign default tags to the module
         UniqueTagList moduleDefaultTags = studyPlan.assignDefaultTags(TypicalModulesInfo.CS1231S);
-        for (Tag defaultTag: moduleDefaultTags) {
+        for (Tag defaultTag : moduleDefaultTags) {
             cs1231s.addTag(defaultTag);
         }
 
@@ -74,8 +81,6 @@ public class ViewModuleTagsCommandTest {
 
     @Test
     public void execute_noUserTagsPresentInModule_allModuleTagsShownSuccessful() {
-        Tag validTagOne = new TagBuilder().buildTestUserTag();
-
         // construct module with no user tags
         Module cs1231s = new ModuleBuilder().withModuleCode("CS1231S").build();
         HashMap<String, Module> moduleHashMap = new HashMap<String, Module>();
@@ -107,9 +112,9 @@ public class ViewModuleTagsCommandTest {
     @Test
     public void execute_noTagsPresentInModule_throwsCommandException() {
         // construct module with no user tags
-        Module cs2101 = new ModuleBuilder().withModuleCode("CS2101").build();
+        Module cs3230 = new ModuleBuilder().withModuleCode("CS3230").build();
         HashMap<String, Module> moduleHashMap = new HashMap<String, Module>();
-        moduleHashMap.put("CS2101", cs2101);
+        moduleHashMap.put("CS3230", cs3230);
 
         // construct model containing study plan
         StudyPlan studyPlan = new StudyPlanBuilder().withModules(moduleHashMap).build();
@@ -117,14 +122,8 @@ public class ViewModuleTagsCommandTest {
                 new UserPrefs(), TypicalModulesInfo.getTypicalModulesInfo());
         model.activateFirstStudyPlan();
 
-        // construct list of tags that should be shown
-        UniqueTagList expectedList = new UniqueTagList();
-
-        CommandResult expectedCommandResult = new CommandResult(ViewModuleTagsCommand.MESSAGE_NO_TAGS_FOUND,
-                ResultViewType.TAG, expectedList.asUnmodifiableObservableList());
-
         // construct command to show all tags for the module
-        ViewModuleTagsCommand viewModuleTagsCommand = new ViewModuleTagsCommand("CS2101");
+        ViewModuleTagsCommand viewModuleTagsCommand = new ViewModuleTagsCommand("CS3230");
         assertThrows(CommandException.class, () -> viewModuleTagsCommand.execute(model),
                 ViewModuleTagsCommand.MESSAGE_NO_TAGS_FOUND);
     }

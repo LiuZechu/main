@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -144,7 +143,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public StudyPlan activateStudyPlan(int index) throws StudyPlanNotFoundException {
         boolean foundStudyPlan = false;
-        Iterator<StudyPlan> iterator = studyPlans.iterator();
         for (StudyPlan studyPlan : studyPlans) {
             if (studyPlan.getIndex() == index) {
                 activeStudyPlan = studyPlan;
@@ -158,6 +156,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
         // if this active study plan has already been activated before, then no need to activate it again.
         if (activeStudyPlan.isActivated()) {
+            // Even if it's been activated before, we need to update whether its prerequisites have been satisfied
+            activeStudyPlan.updatePrereqs();
             return activeStudyPlan;
         }
 
@@ -252,18 +252,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-<<<<<<< HEAD
-     * Sets the current semester. The user cannot change any module before the current semester. But they can
-     * still change those in the current semester and after the current semester.
-     */
-    public void setCurrentSemester(SemesterName semesterName) {
-        currentSemester = semesterName;
-        activeStudyPlan.setCurrentSemester(semesterName);
-    }
-
-    /**
-=======
->>>>>>> Undo redo updates, still not working
+     * =======
+     * >>>>>>> Undo redo updates, still not working
      * Returns the current semester. The user cannot change any module before the current semester. But they can
      * still change those in the current semester and after the current semester.
      *
@@ -271,6 +261,19 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public SemesterName getCurrentSemester() {
         return currentSemester;
+    }
+
+    /**
+     * <<<<<<< HEAD
+     * Sets the current semester. The user cannot change any module before the current semester. But they can
+     * still change those in the current semester and after the current semester.
+     */
+    public void setCurrentSemester(SemesterName semesterName) {
+        currentSemester = semesterName;
+        for (StudyPlan studyPlan : this.studyPlans) {
+            studyPlan.setCurrentSemester(currentSemester);
+        }
+        activeStudyPlan.setCurrentSemester(semesterName);
     }
 
     /**
