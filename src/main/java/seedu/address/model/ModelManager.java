@@ -377,7 +377,7 @@ public class ModelManager implements Model {
         return modulePlanner.getSemestersFromActiveSp();
     }
 
-    public StudyPlan getStudyPlan(int index) {
+    public StudyPlan getStudyPlan(int index) throws StudyPlanNotFoundException {
         return modulePlanner.getStudyPlan(index);
     }
 

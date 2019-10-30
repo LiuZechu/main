@@ -455,7 +455,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         return activeStudyPlan.getSemesters();
     }
 
-    public StudyPlan getStudyPlan(int index) {
+    public StudyPlan getStudyPlan(int index) throws StudyPlanNotFoundException {
         return studyPlans.getStudyPlanByIndex(index);
     }
 
