@@ -33,6 +33,7 @@ import seedu.address.model.versiontracking.exception.StudyPlanCommitManagerNotFo
  * Duplicates are not allowed (by .isSameStudyPlan comparison)
  */
 public class ModulePlanner implements ReadOnlyModulePlanner {
+
     private final UniqueStudyPlanList studyPlans;
     private final ModulesInfo modulesInfo;
     private final VersionTrackingManager versionTrackingManager;
@@ -296,6 +297,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public void deleteAllModulesInSemester(SemesterName semesterName) {
         activeStudyPlan.deleteAllModulesInSemester(semesterName);
+    }
+
+    /**
+     * Deletes a semester completely from a study plan. This is applicable to special terms and Year 5 semesters.
+     */
+    public void deleteSemester(SemesterName semesterName) {
+        activeStudyPlan.deleteSemester(semesterName);
     }
 
     //=========== Module Information and Verification =============================================================

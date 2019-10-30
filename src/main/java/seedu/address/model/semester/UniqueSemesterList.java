@@ -3,6 +3,7 @@ package seedu.address.model.semester;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -98,6 +99,18 @@ public class UniqueSemesterList implements Iterable<Semester>, Cloneable {
      */
     public ObservableList<Semester> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Sorts the internal list by ascending order of semester name.
+     */
+    public void sortBySemesterName() {
+        internalList.sort(new Comparator<Semester>() {
+            @Override
+            public int compare(Semester o1, Semester o2) {
+                return o1.getSemesterName().compareTo(o2.getSemesterName());
+            }
+        });
     }
 
     @Override
