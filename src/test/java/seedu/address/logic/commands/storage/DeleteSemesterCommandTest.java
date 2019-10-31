@@ -18,7 +18,6 @@ import seedu.address.model.semester.UniqueSemesterList;
 import seedu.address.model.studyplan.StudyPlan;
 import seedu.address.testutil.StudyPlanBuilder;
 
-
 /**
  * Contains integration tests (interaction with the Model) for {@code DeleteSemesterCommand}.
  */
