@@ -54,7 +54,8 @@ or as `newplan Algo and Graphics`.
 === Storage and Version Tracking
 
 ==== Creating a new study plan: `newplan`
-Creates a new study plan with an optional title. +
+Creates a new study plan with an optional title. The title should contain only ASCII characters, and should not be
+longer than 20 characters. +
 Format: `newplan [TITLE]` +
 Examples:
 
@@ -82,23 +83,23 @@ Shows all commit history of the current study plan. +
 Format: `history`
 
 ==== Viewing a commit: `viewcommit`
-Shows the version of the current study plan for a particular commit.This does not create a new commit, nor does it
+Shows the version of the current study plan for a particular commit. This does not create a new commit, nor does it
 return the study plan to a previous version. The commit will be displayed as a simplified study plan. +
 Format: `viewcommit COMMIT_NUMBER` +
 Example:
 
-* `viewcommit 1.1`
-* `This allows the user to view commit 1 of study plan 1 (which is currently active).`
+* `viewcommit 1.1` +
+This allows the user to view commit 1 of study plan 1 (which is currently active).
 
 ==== Reverting to a commit: `revert`
-Reverts to the version of the current study plan for a particular commit. This creates a new "revert" commit and
+Reverts to the version of the current study plan for a particular commit. This creates a new "Revert to" commit and
 returns the current active study plan back to the state in the specified commit. +
 Format: `revert COMMIT_NUMBER` +
 Example:
 
 * `revert 1.1` +
 Suppose there are commits `1.0`, `1.1`, `1.2`, and `1.3`. This allows the user to revert to commit 1 of study plan 1,
-creating a new commit called `1.4: Revert "COMMIT_MESSAGE_OF_1.1"`.
+creating a new commit called `1.4: Revert to "COMMIT_MESSAGE_OF_1.1"`.
 
 ==== Deleting a commit: `deletecommit`
 Deletes a commit in the current active study plan specified by the commit number. +
@@ -134,10 +135,10 @@ Examples:
 * `movesem y3s1 2 1`
 
 ==== Adding a semester: `addsem`
-Adds a _non_mainstream_semester_ (i.e. special term or Year 5 semester) to the current active study plan.
+Adds a _non-mainstream semester_ (i.e. special term or Year 5 semester) to the current active study plan.
 
 [NOTE]
-The user is not allowed to add a _mainstream_semester_. The eight default semesters will always be displayed on
+The user is not allowed to add a _mainstream semester_. The eight default semesters will always be displayed on
 the GUI.
 
 Format: `addsem SEMESTER` +
@@ -148,7 +149,7 @@ Example:
 ==== Removing a semester from a study plan: `removesem`
 Deletes all the modules in the specified semester in the current active study plan, after which that
 semester will contain no modules. If the semester to be deleted is a _mainstream semester_  (i.e. not a special term
-or a Year 5 semester), an empty semester will remain on the GUI. If the semester is a _non_mainstream semester_,
+or a Year 5 semester), an empty semester will remain on the GUI. If the semester is a _non-mainstream semester_,
 e.g. Y1ST1, the whole semester will disappear from the current study plan. +
 
 Format: `removesem SEMESTER` +
@@ -165,14 +166,16 @@ Example:
 * `description CS2103T`
 
 ==== Editing the title of current study plan: `title`
-Changes the title of the current active study plan. +
+Changes the title of the current active study plan. The title should contain only ASCII characters, and should not be
+longer than 20 characters. +
+
 Format: `title PLAN_TITLE` +
 Example:
 
 * `title Algo and Graphics`
 
 ==== Setting default study plan: `default`
-Generates a study plan with pre-populated modules according to the recommended study plan for a year one student. +
+Generates a study plan with pre-populated modules according to the recommended study plan for a Year one CS student. +
 Format: `default`
 
 ==== Listing all study plans: `list`
