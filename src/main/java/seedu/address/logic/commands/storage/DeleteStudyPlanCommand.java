@@ -63,6 +63,7 @@ public class DeleteStudyPlanCommand extends Command {
             if (!isSuccessful) {
                 return new CommandResult(MESSAGE_NO_MORE_STUDYPLAN, true, false);
             } else {
+                model.addToHistory();
                 return new CommandResult(String.format(MESSAGE_DELETE_STUDYPLAN_SUCCESS, studyPlanToDelete),
                         true, false);
             }
