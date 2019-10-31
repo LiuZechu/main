@@ -618,6 +618,7 @@ public class StudyPlan implements Cloneable {
         }
 
         clone.moduleTags = (UniqueTagList) moduleTags.clone();
+        clone.studyPlanTags = (UniqueTagList) studyPlanTags.clone();
 
         return clone;
     }
