@@ -258,7 +258,6 @@ public class ModelManager implements Model {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-
             return false;
         }
 

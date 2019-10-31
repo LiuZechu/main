@@ -120,9 +120,31 @@ public class UniqueSemesterList implements Iterable<Semester>, Cloneable {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueSemesterList // instanceof handles nulls
-                && internalList.equals(((UniqueSemesterList) other).internalList));
+        if (other == this) {
+            return true; // short circuit if same object
+        }
+
+        if (!(other instanceof UniqueSemesterList)) {
+            return false; // instanceof handles nulls
+        }
+
+        if (internalList.equals(((UniqueSemesterList) other).internalList)) {
+            return true;
+        }
+
+        // check semester list
+        try {
+            for (int i = 0; i < internalList.size(); i++) {
+                Semester semester1 = internalList.get(i);
+                Semester semester2 = ((UniqueSemesterList) other).internalList.get(i);
+                if (!semester1.equals(semester2)) {
+                    return false;
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+        return true;
     }
 
     @Override
