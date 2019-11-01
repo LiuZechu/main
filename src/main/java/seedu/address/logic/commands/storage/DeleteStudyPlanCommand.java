@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.storage;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_STUDY_PLAN;
 
 import java.util.List;
 
@@ -20,15 +21,11 @@ public class DeleteStudyPlanCommand extends Command {
     public static final String COMMAND_WORD = "removeplan";
 
     public static final String HELP_MESSAGE = COMMAND_WORD + ": Removing a study plan";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the study plan identified by the index number used in the displayed study plan list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-
     public static final String MESSAGE_DELETE_STUDYPLAN_SUCCESS = "Deleted StudyPlan: %1$s";
-    public static final String MESSAGE_NO_MORE_STUDYPLAN = "You don't have any study plan currently. Create now!";
-
 
     private final Index targetIndex;
 
@@ -42,7 +39,7 @@ public class DeleteStudyPlanCommand extends Command {
         List<StudyPlan> lastShownList = model.getFilteredStudyPlanList();
 
         if (targetIndex.getZeroBased() > StudyPlan.getTotalNumberOfStudyPlans()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDYPLAN_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDY_PLAN_DISPLAYED_INDEX);
         }
 
         StudyPlan studyPlanToDelete = null;
@@ -52,7 +49,7 @@ public class DeleteStudyPlanCommand extends Command {
             }
         }
         if (studyPlanToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDYPLAN_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDY_PLAN_DISPLAYED_INDEX);
         }
 
         model.deleteStudyPlan(studyPlanToDelete);
@@ -61,7 +58,7 @@ public class DeleteStudyPlanCommand extends Command {
         if (model.getActiveStudyPlan().equals(studyPlanToDelete)) {
             boolean isSuccessful = model.activateFirstStudyPlan();
             if (!isSuccessful) {
-                return new CommandResult(MESSAGE_NO_MORE_STUDYPLAN, true, false);
+                return new CommandResult(MESSAGE_NO_STUDY_PLAN, true, false);
             } else {
                 model.addToHistory();
                 return new CommandResult(String.format(MESSAGE_DELETE_STUDYPLAN_SUCCESS, studyPlanToDelete),
@@ -71,7 +68,6 @@ public class DeleteStudyPlanCommand extends Command {
 
         // delete the corresponding study plan commit manager
         model.deleteStudyPlanCommitManagerByIndex(studyPlanToDelete.getIndex());
-
         model.addToHistory();
 
         return new CommandResult(String.format(MESSAGE_DELETE_STUDYPLAN_SUCCESS, studyPlanToDelete));

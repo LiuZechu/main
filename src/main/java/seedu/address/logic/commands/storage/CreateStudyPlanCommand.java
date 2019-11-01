@@ -54,7 +54,7 @@ public class CreateStudyPlanCommand extends Command {
                 SemesterName currentSemester = model.getModulePlanner().getCurrentSemester();
                 studyPlanToAdd = new StudyPlan(new Title(studyPlanName), modulesInfo, currentSemester);
             } catch (InvalidTitleException e) {
-                return new CommandResult(Title.MESSAGE_CONSTRAINTS);
+                throw new CommandException(Title.MESSAGE_CONSTRAINTS);
             }
         }
 

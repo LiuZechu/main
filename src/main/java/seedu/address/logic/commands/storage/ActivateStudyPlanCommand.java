@@ -39,7 +39,7 @@ public class ActivateStudyPlanCommand extends Command {
         try {
             model.activateStudyPlan(studyPlanIndex);
         } catch (StudyPlanNotFoundException e) {
-            return new CommandResult(MESSAGE_NO_SUCH_STUDYPLAN);
+            throw new CommandException(MESSAGE_NO_SUCH_STUDYPLAN);
         }
 
         String studyPlanName = model.getActiveStudyPlan().getTitle().toString();
