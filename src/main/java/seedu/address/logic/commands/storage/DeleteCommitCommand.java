@@ -23,7 +23,7 @@ public class DeleteCommitCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the commit identified by the index number used in the displayed commit list.\n"
-            + "Parameters: STUDYPLAN_INDEX.COMMIT_INDEX (must be non-negative integers)\n"
+            + "Parameters: STUDY_PLAN_ID.COMMIT_INDEX (must be non-negative integers)\n"
             + "Example: " + COMMAND_WORD + " 1.3";
     public static final String MESSAGE_SUCCESS = "Deleted commit: %1$s";
     public static final String MESSAGE_INVALID_COMMIT_INDEX = "The commit number you've entered is invalid.";

@@ -21,7 +21,7 @@ public class RevertCommitCommand extends Command {
     public static final String HELP_MESSAGE = COMMAND_WORD + ": Reverting to a commit";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Reverts the study plan to the commit identified by the index used in the displayed commit list.\n"
-            + "Parameters: PLAN_INDEX.COMMIT_NUMBER (both must be non-negative integers)\n"
+            + "Parameters: PLAN_ID.COMMIT_NUMBER (both must be non-negative integers)\n"
             + "Example: " + COMMAND_WORD + " 1.3";
     public static final String MESSAGE_SUCCESS = "Here's your study plan for this commit. New revert commit created.";
     public static final String MESSAGE_NO_SUCH_COMMIT = "The commit index you've entered is invalid!";
