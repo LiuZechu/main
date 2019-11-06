@@ -35,8 +35,8 @@ public class ViewStudyPlanCommandParserTest {
 
     @Test
     public void parse_nonEmptyArg_returnsViewStudyPlanCommand() {
-        String validStudyPlanIndexString =  "1";
-        int validStudyPlanIndex =  1;
+        String validStudyPlanIndexString = "1";
+        int validStudyPlanIndex = 1;
         ViewStudyPlanCommand expectedViewStudyPlanCommand = new ViewStudyPlanCommand(validStudyPlanIndex);
         assertParseSuccess(parser, validStudyPlanIndexString, expectedViewStudyPlanCommand);
     }

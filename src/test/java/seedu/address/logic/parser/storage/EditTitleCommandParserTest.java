@@ -23,7 +23,7 @@ public class EditTitleCommandParserTest {
 
     @Test
     public void parse_nonEmptyArg_returnsEditTitleCommand() {
-        String validTitle =  "non-empty";
+        String validTitle = "non-empty";
         EditTitleCommand expectedEditTitleCommand = new EditTitleCommand(validTitle);
         assertParseSuccess(parser, validTitle, expectedEditTitleCommand);
     }
