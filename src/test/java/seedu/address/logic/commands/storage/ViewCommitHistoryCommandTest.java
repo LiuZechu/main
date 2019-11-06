@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ModulePlanner;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.ModulePlannerBuilder;
 
 
 /**
@@ -49,9 +50,18 @@ public class ViewCommitHistoryCommandTest {
 
     @Test
     public void execute_noActiveStudyPlan_throwsCommandException() {
-        ModulePlanner modulePlannerWithNoActivePlan
+        ModulePlanner modulePlannerWithNoActivePlan = new ModulePlannerBuilder().build();
+        Model modelWithNoActivePlan =
+                new ModelManager(modulePlannerWithNoActivePlan, new UserPrefs(), getTypicalModulesInfo());
         ViewCommitHistoryCommand command = new ViewCommitHistoryCommand();
-        assertThrows(CommandException.class, () -> command.execute(model));
+        assertThrows(CommandException.class, () -> command.execute(modelWithNoActivePlan));
+    }
+
+    @Test
+    public void execute_noCommitHistory_throwsCommandException() {
+        Model noHistoryModel = new ModelManager(getTypicalModulePlanner(), new UserPrefs(), getTypicalModulesInfo());
+        ViewCommitHistoryCommand command = new ViewCommitHistoryCommand();
+        assertThrows(CommandException.class, () -> command.execute(noHistoryModel));
     }
 
     @Test
