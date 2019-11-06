@@ -291,7 +291,7 @@ public class CheckCommandTest {
         }
 
         @Override
-        public List<String> getValidMods(SemesterName semName) {
+        public List<Module> getValidMods(SemesterName semName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -349,6 +349,11 @@ public class CheckCommandTest {
 
         @Override
         public void removeStudyPlanTagFromSp(Tag tag, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void replaceTagInActiveSp(Tag original, Tag replacement) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -600,7 +605,7 @@ public class CheckCommandTest {
         }
 
         @Override
-        public List<String> getValidMods(SemesterName semName) {
+        public List<Module> getValidMods(SemesterName semName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -652,6 +657,11 @@ public class CheckCommandTest {
 
         @Override
         public void removeStudyPlanTagFromSp(Tag tag, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void replaceTagInActiveSp(Tag original, Tag replacement) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -903,7 +913,7 @@ public class CheckCommandTest {
         }
 
         @Override
-        public List<String> getValidMods(SemesterName semName) {
+        public List<Module> getValidMods(SemesterName semName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -955,6 +965,11 @@ public class CheckCommandTest {
 
         @Override
         public void removeStudyPlanTagFromSp(Tag tag, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void replaceTagInActiveSp(Tag original, Tag replacement) {
             throw new AssertionError("This method should not be called.");
         }
 

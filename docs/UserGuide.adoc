@@ -182,7 +182,8 @@ Examples:
 * `removesem y1st2`
 
 ==== Viewing description of a module: `description`
-Shows the description of a particular module, including its prerequisites. +
+Shows the description of a particular module, including its prerequisites.
+Only computer-science related modules will have these descriptions, and not general modules nor electives. +
 Format: `description MODULE_CODE` +
 Example:
 
@@ -318,6 +319,7 @@ Examples:
 * `addmod y1s1 CS1101S CS1231 MA1521`
 * `movemodule CS2105 y2s1 y2s2 && addmod CS2106 y2s2`
 
+//tag::dataclassificationandmanagement[]
 === Data classification and management
 ==== Viewing default tags : `viewdefaulttags`
 Shows all default tag types. +
@@ -458,6 +460,8 @@ Examples
 Lists all study plans in the order of their priorities. +
 Format: `listbypriority`
 
+//end::dataclassificationandmanagement[]
+
 === Verification
 
 ==== Error messages
@@ -470,12 +474,18 @@ such as MCs, core or focus area modules that remain to be taken. +
 Format: `check`
 
 ==== Viewing modules that can be taken in a given semester : `validmods`
-Shows all the modules that can be taken in a given semester based on whether prerequisites have been met. +
+Shows all the modules that can be taken in a given semester, based only on whether its prerequisites have been met. +
+This semester need not necessarily exist in the module planner for you to view its valid modules. +
 Format: `validmods SEMESTER`
 
 Example:
 
 * `validmods y2s1`
+
+==== Clear all currently invalid modules : `clearinvalidmods`
+Clears all modules that are currently invalid, whose prerequisites have not been met in previous semesters.
+This may cause other modules in future semesters to be invalidated as well. +
+Format: `clearinvalidmods`
 
 ==== Displays
 Highlights a module in red if it doesn't satisfy any of its prerequisites, displaying these required modules as tags.

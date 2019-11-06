@@ -213,7 +213,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<String> getValidMods(SemesterName semName) {
+    public List<Module> getValidMods(SemesterName semName) {
         return this.modulePlanner.getValidMods(semName);
     }
 
@@ -335,6 +335,10 @@ public class ModelManager implements Model {
 
     public void removeStudyPlanTagFromSp(Tag tag, int index) {
         modulePlanner.removeStudyPlanTagFromSp(tag, index);
+    }
+
+    public void replaceTagInActiveSp(Tag original, Tag replacement) {
+        modulePlanner.replaceTagInActiveSp(original, replacement);
     }
 
     public PriorityTag getPriorityTagFromSp(int index) {
