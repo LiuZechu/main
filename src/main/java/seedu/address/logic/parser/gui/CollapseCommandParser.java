@@ -1,14 +1,13 @@
-package seedu.address.logic.parser.cli;
+package seedu.address.logic.parser.gui;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.MODULE_PATTERN;
 import static seedu.address.logic.parser.CliSyntax.SEMESTER_PATTERN;
 
-import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.cli.AddModuleCommand;
+import seedu.address.logic.commands.gui.CollapseCommand;
+import seedu.address.logic.commands.gui.ExpandCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -17,9 +16,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.semester.SemesterName;
 
 /**
- * Parses input arguments and creates a new AddModuleCommand object
+ * Parses input arguments and creates a new CollapseCommand object
  */
-public class AddModuleParser implements Parser<AddModuleCommand> {
+public class CollapseCommandParser implements Parser<CollapseCommand> {
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -30,26 +29,22 @@ public class AddModuleParser implements Parser<AddModuleCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddModuleCommand
-     * and returns an AddModuleCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CollapseCommand
+     * and returns an CollapseCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddModuleCommand parse(String args) throws ParseException {
+    public CollapseCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, MODULE_PATTERN, SEMESTER_PATTERN);
+                ArgumentTokenizer.tokenize(args, SEMESTER_PATTERN);
 
-        if (!arePatternsPresent(argMultimap, MODULE_PATTERN, SEMESTER_PATTERN)
+        if (!arePatternsPresent(argMultimap, SEMESTER_PATTERN)
                 || argMultimap.getNumberOfArgsForPattern(SEMESTER_PATTERN) != 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddModuleCommand.MESSAGE_USAGE));
+                    ExpandCommand.MESSAGE_USAGE));
         }
         SemesterName semesterName = ParserUtil.parseSemester(argMultimap.getValue(SEMESTER_PATTERN).get());
-        List<String> moduleCodes = argMultimap.getAllValues(MODULE_PATTERN);
-        for (String s : moduleCodes) {
-            s = ParserUtil.parseModule(s);
-        }
 
-        return new AddModuleCommand(moduleCodes, semesterName);
+        return new CollapseCommand(semesterName);
     }
 }
