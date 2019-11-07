@@ -107,14 +107,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-.Interactions Inside the Logic Component for the `delete 1` Command
-image::DeleteSequenceDiagram.png[]
-
-NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-// end::logic[] 
+//end::logic[]
 
 [[Design-Model]]
 === Model component
@@ -233,6 +226,7 @@ image::UndoRedoState4.png[]
 * **Alternative 2:** Implement redo/undo for every single command.
 ** Pros: Will use less memory (e.g. for `removemod`, just save the person being deleted).
 ** Cons: Tedious because there are a lot of commands and we must ensure that the implementation of each individual command are correct.
+
 // end::undoredo[]
 
 // tag::versiontracking[]
@@ -660,7 +654,7 @@ Refer to the guide <<DevOps#, here>>.
 * Prefers typing over mouse input
 * Is reasonably comfortable using CLI apps
 
-// end::userprofile[]
+//end::userprofile[]
 
 // tag::valueproposition[]
 
@@ -673,7 +667,7 @@ Refer to the guide <<DevOps#, here>>.
 * Version control for saving history of study plans, ensuring that mistakes or past study plans are recoverable.
 * Suits users who are able to type fast and can manage their study plan faster.
 
-// end::valueproposition[]
+//end::valueproposition[]
 
 [appendix]
 // tag::userstories[]
@@ -730,7 +724,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
-// end::userstories[]
+//end::userstories[]
 
 [appendix]
 == Use Cases
