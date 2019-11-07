@@ -1,0 +1,530 @@
+= CSmodbuddy - User Guide
+:site-section: UserGuide
+:toc:
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+endif::[]
+:repoURL: https://github.com/AY1920S1-CS2103-F09-3/main
+
+image::title.png[width="600"]
+
+== Introduction
+
+CS ModBuddy is for those who *prefer to use a desktop app for planning their modules*.
+More importantly, CS ModBuddy is *optimized for those who prefer to work with a Command Line Interface* (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, CS ModBuddy can get your module planning done faster than traditional GUI apps.
+Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+
+== Quick Start
+
+.  Ensure you have Java `11` or above installed in your Computer.
+.  Download the latest `csModBuddy.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for your module plan.
+.  Double-click the file to start the app. The GUI should appear in a few seconds.
++
+image::Ui.png[width="790"]
++
+.  Type the command in the command box and press kbd:[Enter] to execute it. +
+e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
+.  Refer to <<Features>> for details of each command.
+
+[[Features]]
+== Features
+
+====
+*Command Format*
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add SEMESTER MODULE_CODE`, `SEMESTER`
+is a parameter which can be used as `add y1s1 cs1101s`.
+* Items in square brackets are optional e.g `newplan [TITLE]` can be used as `newplan`
+or as `newplan Algo and Graphics`.
+* Items with ... after them can be used multiple times e.g. `TAG_NAME...` can be used as `core`, `core completed`, etc.
+
+====
+
+=== Basic
+
+==== General Help: `help`
+Provides a list of possible commands the user can type. +
+Format: `help`
+
+==== Help for a specific command: `help`
+Provides help for a specific command. +
+Format: `help COMMAND` +
+Example:
+
+* `help newplan`
+
+==== Autocompleting: `tab`
+When the user presses `tab`, the command word, or module code, or semester,
+or tag name will be autocompleted
+If there is only one possible completion, it will be filled immediately.
+If there is more than one possible completion, a menu of possible autocompletions
+is drawn that can be selected with the up and down buttons.
+
+// tag::undoredo[]
+
+==== Undo-ing the previous command: `undo`
+Undo the previous command. The state of the application will revert back to that before the previous command. This command cannot undo itself. +
+
+[NOTE]
+The commands that make changes to the storage file, such as `commit`, cannot be undone.
+
+Format: `undo`
+
+==== Redo-ing the previous undone command: `redo`
+Redo the previous undone command. The state of the application will revert back to that before the undo. This command cannot redo itself. +
+
+Format:  `redo`
+
+// tag::undoredo[] 
+
+==== Error messages
+Displays a useful error message if the input is invalid. For example,
+it should highlight wrong commands, wrong numbers of arguments, or arguments in the wrong format.
+
+=== Module
+
+// tag::addremovemod[] 
+
+==== Assigning a module to a given semester: `addmod`
+Assigns the specified module to a given semester of the current study plan. +
+Format:  `addmod SEMESTER MODULE ...` +
+Examples:
+
+* `addmod y1s1 CS1101s`
+* `addmod y2s2 CS3244 CS3245 CS3233`
+
+==== Removing a module from a given semester. `removemod`
+Removes the specified module to a given semester of the current study plan. +
+Format: `removemod SEMESTER MODULE ...` +
+Examples:
+
+* `removemod y1s1 CS1101S`
+* `removemod y2s2 CS3244`
+
+// end::addremovemod[]
+
+==== Finding modules using the module code : `findmod`
+Shows which semester the specified module is located at. +
+Format: `findmod MODULE_CODE`
+
+Examples:
+
+* `findmod cs1101s`
+* `findmod cs2103`
+
+==== Viewing description of a module: `description`
+Shows the description of a particular module, including its prerequisites.
+Only computer-science related modules will have these descriptions, and not general modules nor electives. +
+Format: `description MODULE_CODE` +
+Example:
+
+* `description CS2103T`
+
+==== Display for invalid modules
+Highlights a module in red if it doesn't satisfy any of its prerequisites, displaying these required modules.
+
+=== Semester
+
+==== Adding a semester: `addsem`
+Adds a _non-mainstream semester_ (i.e. special term or Year 5 semester) to the current active study plan.
+
+[NOTE]
+The user is not allowed to add a _mainstream semester_. The eight default semesters will always be displayed on
+the GUI.
+
+Format: `addsem SEMESTER` +
+Example:
+
+* `addsem y5s1`
+
+==== Removing a semester from a study plan: `removesem`
+Deletes all the modules in the specified semester in the current active study plan, after which that
+semester will contain no modules. If the semester to be deleted is a _mainstream semester_  (i.e. not a special term
+or a Year 5 semester), an empty semester will remain on the GUI. If the semester is a _non-mainstream semester_,
+e.g. Y1ST1, the whole semester will disappear from the current study plan. +
+
+Format: `removesem SEMESTER` +
+Examples:
+
+* `removesem y2s2`
+* `removesem y1st2`
+
+==== Setting the current semester. `setcurrent`
+Sets the given semester as the current one. Semesters before the specified semester will be locked and therefore modules cannot be added or removed from them. +
+Format: `setcurrent SEMESTER` +
+Examples:
+
+* `setcurrent y1s2`
+
+==== Blocking off the given semester: `block`
+Block off the given semester, for reasons such as exchange, LOA, etc. +
+Format:  `block SEMESTER [REASON]`
+
+==== Unblocking the given semester: `unblock`
+Unblock the given semester. +
+Format:  `unblock SEMESTER`
+
+==== Viewing modules that can be taken in a given semester : `validmods`
+Shows all the modules that can be taken in a given semester, based only on whether its prerequisites have been met. +
+This semester need not necessarily exist in the module planner for you to view its valid modules. +
+Format: `validmods SEMESTER`
+
+Example:
+
+* `validmods y2s1`
+
+//tag::dataclassificationandmanagement[]
+=== Tagging
+==== Viewing default tags : `viewdefaulttags`
+Shows all default tag types. +
+Format: `viewdefaulttags`
+****
+List of default tags:
+
+* `Completed` +
+_Completed_ modules are modules that are in any semester before the *current semester*.
+* `Core` +
+_Core_ modules are *Computer Science Foundation* modules that count towards *Programme Requirements*.
+* `S/U-able` +
+_S/U-able_ modules are modules that permit the *Satisfactory/Unsatisfactory option*.
+* `UE` +
+_UE_ modules are *Unrestricted Elective* modules.
+* `ULR` +
+_ULR_ modules are modules that count towards *University Level Requirements*.
+* `FOCUS_AREA_NAME:P` +
+_P_ modules are modules that count towards Focus Area Primaries for _FOCUS_AREA_NAME_.
+* `FOCUS_AREA_NAME:E` +
+_E_ modules are modules that count towards Focus Area Electives for _FOCUS_AREA_NAME_.
+****
+
+==== Tagging modules : `addtag`
+Attaches a tag to a module. +
+Format: `addtag MODULE_CODE TAG_NAME`
+
+[TIP]
+If a tag with the given `TAG_NAME` does not exist, a new tag will automatically be created and tagged to the specified module.
+
+Example:
+
+* `addtag cs3230 exchange` +
+Attaches the tag with name _exchange_ to _CS3230_.
+
+==== Deleting tags: `deletetag`
+Deletes a tag completely and removes it from any module that it is attached to. +
+Format: `deletetag TAG_NAME`
+
+[NOTE]
+Only user-created tags can be deleted, i.e. default tag cannot be deleted.
+
+Example:
+
+* `deletetag exchange`
+
+==== Removing a tag from a module: `removetag`
+Removes a tag from a module. +
+Format: `removetag MODULE_CODE TAG_NAME`
+
+Example:
+
+* `removetag cs3230 exchange`
+
+==== Viewing all tags : `viewalltags`
+Shows all tag types. +
+Format: `viewalltags`
+
+==== Renaming an existing tag : `renametag`
+Renames a tag. +
+Format: `renametag ORIGINAL_TAG_NAME NEW_TAG_NAME`
+
+[NOTE]
+Only user-created tags can be renamed, i.e. default tag cannot be renamed.
+
+Example:
+
+* `renametag exchange sep` +
+Renames the tag name from _exchange_ to _sep_.
+
+==== Viewing modules with specific tags : `viewtagged`
+Shows all modules attached to all the specified tags. +
+Format: `viewtagged TAG_NAME ...`
+
+Examples:
+
+* `viewtagged completed` +
+Shows all modules that are tagged as _completed_.
+* `viewtagged core completed` +
+Shows all modules that are tagged as _core_ and _completed_.
+
+==== Viewing tags for a specific module : `viewtags`
+Shows all tags attached to the specified module. +
+Format: `viewtags MODULE_CODE`
+
+Examples:
+
+* `viewtags cs2030`
+
+==== Removing all tags from the study plan : `removealltags`
+Removes all user-created tags in the entire study plan. +
+Format: `removeallmodtags`
+
+//end::dataclassificationandmanagement[]
+
+=== Study Plan
+
+==== Creating a new study plan: `newplan`
+Creates a new study plan with an optional title. The title should contain only ASCII characters, and should not be
+longer than 20 characters.
+
+[NOTE]
+Each study plan is assigned a unique ID upon its creation. This ID will remain the same throughout
+the life of the study plan.
+
+Format: `newplan [TITLE]` +
+Examples:
+
+* `newplan`
+* `newplan noc half year`
+* `newplan minor in maths`
+
+==== Deleting a study plan: `removeplan`
+Deletes a study plan with a given ID. +
+Format: `removeplan PLAN_NUMBER` +
+Example:
+
+* `removeplan 4`
+
+==== Listing all study plans: `list`
+Lists all the study plans that the user has created and has not deleted.
+
+[NOTE]
+Each study plan is assigned a unique ID upon its creation. This ID will remain the same throughout
+the life of the study plan.
+
+Format: `list`
+
+==== Viewing another study plan: `viewplan`
+Shows the study plan with a given ID. The specified study plan will be displayed on the left panel of the GUI
+as a simplified study plan. This does not activate that study plan, so it is for viewing only. +
+
+Format: `viewplan PLAN_NUMBER` +
+Example:
+
+* `viewplan 3` +
+This allows the user to view the study plan with an ID of 3.
+
+==== Setting another study plan as active: `activate`
+Replaces the current study plan with the specified study plan as the active one. +
+Format: `activate PLAN_NUMBER` +
+Example:
+
+* `activate 2`
+
+==== Editing the title of current study plan: `title`
+Changes the title of the current active study plan. The title should contain only ASCII characters, and should not be
+longer than 20 characters. +
+
+Format: `title PLAN_TITLE` +
+Example:
+
+* `title Algo and Graphics`
+
+==== Setting default study plan: `default`
+Generates a study plan with pre-populated modules according to the recommended study plan for a Year one CS student. +
+Format: `default`
+
+==== Adding priority tags to a study plan : `setpriority`
+Attaches a priority tag to the study plan. +
+Format: `setpriority PRIORITY_LEVEL STUDY_PLAN_ID`
+
+****
+List of priority levels:
+
+* `HIGH` +
+* `MEDIUM` +
+* `LOW`
+****
+
+Examples:
+
+* `setpriority high 1`
+* `setpriority low 3`
+
+==== Removing priority tags from study plan: `removepriority`
+Removes the priority tag from the study plan. +
+Format: `removepriority PRIORITY_LEVEL STUDY_PLAN_ID`
+
+Examples
+
+* `removepriority high 1`
+* `removepriority low 3`
+
+==== Listing study plans by priority: `listbypriority`
+Lists all study plans in the order of their priorities. +
+Format: `listbypriority`
+
+==== Checking a study plan's feasibility : `check`
+Shows details about what graduation requirements are left to be fulfilled,
+such as MCs, core or focus area modules that remain to be taken. +
+Format: `check`
+
+==== Clear all currently invalid modules : `clearinvalidmods`
+Clears all modules that are currently invalid, whose prerequisites have not been met in previous semesters.
+This may cause other modules in future semesters to be invalidated as well. +
+Format: `clearinvalidmods`
+
+=== Version Tracking
+
+==== Committing edits to a study plan: `commit`
+Saves changes to a study plan with a short commit message.
+
+[NOTE]
+Even without committing, the module planner is automatically saved to storage after every command is
+executed successfully. However, commits allow the user to revert to a previous state of the study plan.
+
+[TIP]
+The user is allowed, but not recommended, to commit a study plan even when there are no changes
+since the previous commit.
+
+Format: `commit SHORT_MESSAGE` +
+Examples:
+
+* `commit planned until y2s2`
+* `commit haven’t added UEs`
+
+==== Checking commit history: `history`
+Shows all commit history of the current study plan. +
+Format: `history`
+
+==== Viewing a commit: `viewcommit`
+Shows the version of the current study plan for a particular commit. This does not create a new commit, nor does it
+return the study plan to a previous version. The commit will be displayed as a simplified study plan. +
+
+Format: `viewcommit COMMIT_NUMBER` +
+Example:
+
+* `viewcommit 1.1` +
+This allows the user to view commit 1 of study plan 1 (which is currently active).
+
+==== Reverting to a commit: `revert`
+Reverts to the version of the current study plan for a particular commit. This creates a new "Revert to" commit and
+returns the current active study plan back to the state in the specified commit.
+
+[TIP]
+The user is allowed, but not recommended, to revert to another "Revert to" commit. This will create a
+long chain of "Revert to Revert to ..." commit messages.
+
+Format: `revert COMMIT_NUMBER` +
+Example:
+
+* `revert 1.1` +
+Suppose there are commits `1.0`, `1.1`, `1.2`, and `1.3`. This allows the user to revert to commit 1 of study plan 1,
+creating a new commit called `1.4: Revert to "COMMIT_MESSAGE_OF_1.1"`.
+
+==== Removing a commit: `removecommit`
+Removes a commit in the current active study plan specified by the commit number. +
+Format: `removecommit COMMIT_NUMBER` +
+Example:
+
+* `removecommit 2.2`
+
+=== GUI
+
+==== Expanding a semester: `expand`
+Expands a semester so that more details can be seen. +
+Format: `expand SEMESTER` +
+Example:
+
+* `expand y1s1`
+
+==== Expanding all semesters: `expandall`
+Expands all semesters so that more details can be seen. +
+Format: `expandall`
+
+==== Collapsing a semester: `collapse`
+Collapses a semester so that most details are hidden. +
+Format: `collapse SEMESTER` +
+Example:
+
+* `collapse y1s1`
+
+==== Collapsing all semesters: `collapseall`
+Collapses all semesters so that most details are hidden. +
+Format: `collapseall`
+
+==== Changing the theme of the GUI: `theme`
+Changes the theme of the GUI +
+Format: `theme THEME_NAME`
+
+Existing themes are:
+light, dark.
+
+Examples:
+
+* `theme light`
+* `theme dark`
+
+== Upcoming Features [coming in v2.0]
+
+=== Basic
+
+==== Chaining commands `[coming in v2.0]`
+Chain commands together for greater efficiency. The commands, if different, are separated by a ‘&&’. ‘&&’ is not needed if the command is the same. +
+Format: `COMMAND_1 && COMMAND_2 && …` +
+Examples:
+
+* `addmod y1s1 CS1101S CS1231 MA1521`
+* `movemodule CS2105 y2s1 y2s2 && addmod CS2106 y2s2`
+
+=== Semester
+
+==== Moving a semester to a study plan: `movesem` `[coming in v2.0]`
+Moves a semester of modules to another study plan with a specified ID. +
+
+Format: `movesem SEMESTER SOURCE_PLAN DESTINATION_PLAN` +
+Examples:
+
+* `movesem y2s2 1 3`
+* `movesem y3s1 2 1`
+
+=== Module
+
+==== Naming a UE from a semester. `[coming in v2.0]`
+Names a UE from the given semester with the given module name. This feature is purely for aesthetic purposes and has no functional implications.
+
+Format: `nameue SEMESTER NAME` +
+Examples:
+
+* `nameue y1s1 GER1000`
+
+==== Moving a module from one semester to another. `[coming in v2.0]`
+Moves a given module from a source semester to a destination semester, as specified. +
+Format: `movemod MODULE SEMESTER_SRC SEMESTER_DEST` +
+Examples:
+
+* `movemod CS3243 y2s1 y2s2`
+
+=== Study Plan
+
+==== Declaring a focus area: `[coming in v2.0]`
+Declares the given focus area as one of the focus areas of the study plan. This means that the requirements of the focus area has to be met to be eligible for graduation. +
+Format: `declarefocusarea FOCUS_AREA`
+
+==== Displays for an invalid study plan
+`[coming in v2.0]` The study plan will have a tick or cross beside it, which shows if the entire plan is feasible.
+
+
+== FAQ
+
+*Q*: How do I transfer my data to another Computer? +
+*A*: Download the jar file in the other computer and overwrite the empty data folder it creates with the previous data folder containing the moduleplanner.json.
