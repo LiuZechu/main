@@ -2,6 +2,9 @@ package seedu.address.model.versiontracking;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.studyplan.StudyPlan;
 import seedu.address.model.versiontracking.exception.CommitNotFoundException;
 
@@ -9,6 +12,7 @@ import seedu.address.model.versiontracking.exception.CommitNotFoundException;
  * Represents a manager that manages the commits for one study plan with a particular index.
  */
 public class StudyPlanCommitManager {
+    private static final Logger logger = LogsCenter.getLogger(StudyPlanCommitManager.class);
 
     public static final String MESSAGE_REVERT_COMMIT = "Revert to: %1$s";
 
@@ -52,6 +56,7 @@ public class StudyPlanCommitManager {
             e.printStackTrace();
         }
         commitList.commitStudyPlan(planToCommit, commitMessage);
+        logger.info("Active study plan committed successfully with a message: " + commitMessage);
     }
 
     /**
@@ -67,8 +72,6 @@ public class StudyPlanCommitManager {
     public StudyPlan revertToCommit(int commitNumber) {
         StudyPlan newActiveStudyPlan = commitList.getStudyPlanByCommitNumber(commitNumber);
         String commitMessage = commitList.getCommitMessageByCommitNumber(commitNumber);
-        // Changed from original implementation: originally, discard all later commits. Now, add a new revert commit.
-        // commitList.deleteAllLaterCommits(commitNumber);
         commit(newActiveStudyPlan, String.format(MESSAGE_REVERT_COMMIT, commitMessage));
         return newActiveStudyPlan;
     }

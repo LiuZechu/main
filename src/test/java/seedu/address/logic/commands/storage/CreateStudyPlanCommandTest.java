@@ -20,7 +20,7 @@ import seedu.address.testutil.StudyPlanBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code CreateStudyPlanCommand}.
  */
-public class CreateStudyPlanCommandIntegrationTest {
+public class CreateStudyPlanCommandTest {
 
     private Model model;
 
@@ -32,44 +32,45 @@ public class CreateStudyPlanCommandIntegrationTest {
     @Test
     public void execute_newStudyPlan_success() throws CommandException {
         StudyPlan validStudyPlan = new StudyPlanBuilder().build();
-
-        Model expectedModel = new ModelManager(getTypicalModulePlanner(), new UserPrefs(), getTypicalModulesInfo());
-        expectedModel.addStudyPlan(validStudyPlan);
-        expectedModel.activateStudyPlan(validStudyPlan.getIndex());
-        expectedModel.addToHistory();
+        Model expectedModel = generateExpectedModel(validStudyPlan);
 
         CreateStudyPlanCommand command = new CreateStudyPlanCommand(validStudyPlan.getTitle().toString());
         CommandResult expectedResult = new CommandResult(String.format(CreateStudyPlanCommand.MESSAGE_SUCCESS,
                 validStudyPlan.getTitle().toString(), validStudyPlan.getIndex()), true, false);
         CommandResult actualResult = command.execute(model);
-        // compare titles since study plan IDs are unique
-        String expectedResultTitle = expectedResult.getFeedbackToUser().split("unique")[0];
-        String actualResultTitle = actualResult.getFeedbackToUser().split("unique")[0];
-        assertEquals(expectedResultTitle, actualResultTitle);
-        assertEquals(expectedModel.getActiveStudyPlan().getTitle(), model.getActiveStudyPlan().getTitle());
-        // does not use assertCommandSuccess due to uncertainty with undo/redo
+
+        assertCreateStudyPlanSuccess(expectedResult, actualResult, expectedModel);
     }
 
     @Test
     public void execute_newStudyPlanWithNoTitle_success() throws CommandException {
         StudyPlan validStudyPlanWithoutTitle = new StudyPlanBuilder().withTitle(new Title("")).build();
-
-        Model expectedModel = new ModelManager(getTypicalModulePlanner(), new UserPrefs(), getTypicalModulesInfo());
-        expectedModel.addStudyPlan(validStudyPlanWithoutTitle);
-        expectedModel.activateStudyPlan(validStudyPlanWithoutTitle.getIndex());
-        expectedModel.addToHistory();
+        Model expectedModel = generateExpectedModel(validStudyPlanWithoutTitle);
 
         CreateStudyPlanCommand command = new CreateStudyPlanCommand("");
         CommandResult expectedResult = new CommandResult(String.format(CreateStudyPlanCommand.MESSAGE_SUCCESS,
                 validStudyPlanWithoutTitle.getTitle().toString(), validStudyPlanWithoutTitle.getIndex()),
                 true, false);
         CommandResult actualResult = command.execute(model);
+
+        assertCreateStudyPlanSuccess(expectedResult, actualResult, expectedModel);
+    }
+
+    private Model generateExpectedModel(StudyPlan studyPlan) {
+        Model expectedModel = new ModelManager(getTypicalModulePlanner(), new UserPrefs(), getTypicalModulesInfo());
+        expectedModel.addStudyPlan(studyPlan);
+        expectedModel.activateStudyPlan(studyPlan.getIndex());
+        expectedModel.addToHistory();
+        return expectedModel;
+    }
+
+    private void assertCreateStudyPlanSuccess(CommandResult expectedResult, CommandResult actualResult,
+                                              Model expectedModel) {
         // compare titles since study plan IDs are unique
         String expectedResultTitle = expectedResult.getFeedbackToUser().split("unique")[0];
         String actualResultTitle = actualResult.getFeedbackToUser().split("unique")[0];
         assertEquals(expectedResultTitle, actualResultTitle);
         assertEquals(expectedModel.getActiveStudyPlan().getTitle(), model.getActiveStudyPlan().getTitle());
-        // does not use assertCommandSuccess due to uncertainty with undo/redo
     }
 
 }
