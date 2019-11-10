@@ -1,63 +1,37 @@
 {
   "studyPlans" : [ {
-    "totalNumber" : 1,
-    "title" : "Recommended Plan",
-    "index" : 1,
+    "totalNumber" : 3,
+    "title" : "THIRS",
+    "index" : 3,
     "semesters" : [ {
       "semesterName" : "Y1S1",
       "isBlocked" : false,
       "reasonForBlocked" : null,
-      "modules" : [ {
-        "moduleCode" : "CS1101S"
-      }, {
-        "moduleCode" : "CS1231S"
-      } ],
+      "modules" : [ ],
       "isExpanded" : true
     }, {
       "semesterName" : "Y1S2",
       "isBlocked" : false,
       "reasonForBlocked" : null,
-      "modules" : [ {
-        "moduleCode" : "CS2030"
-      }, {
-        "moduleCode" : "CS2040S"
-      }, {
-        "moduleCode" : "CS2100"
-      }, {
-        "moduleCode" : "IS1103X"
-      } ],
+      "modules" : [ ],
       "isExpanded" : true
     }, {
       "semesterName" : "Y2S1",
       "isBlocked" : false,
       "reasonForBlocked" : null,
-      "modules" : [ {
-        "moduleCode" : "CS2103T"
-      }, {
-        "moduleCode" : "CS2101"
-      }, {
-        "moduleCode" : "CS2105"
-      }, {
-        "moduleCode" : "CS2106"
-      } ],
+      "modules" : [ ],
       "isExpanded" : true
     }, {
       "semesterName" : "Y2S2",
       "isBlocked" : false,
       "reasonForBlocked" : null,
-      "modules" : [ {
-        "moduleCode" : "CS3230"
-      }, {
-        "moduleCode" : "ES2660"
-      } ],
+      "modules" : [ ],
       "isExpanded" : true
     }, {
       "semesterName" : "Y3S1",
       "isBlocked" : false,
       "reasonForBlocked" : null,
-      "modules" : [ {
-        "moduleCode" : "CS3203"
-      } ],
+      "modules" : [ ],
       "isExpanded" : true
     }, {
       "semesterName" : "Y3S2",
@@ -599,7 +573,7 @@
     "currentSemester" : "Y1S1",
     "studyPlanTags" : [ ]
   } ],
-  "activeStudyPlanIndex" : 1,
+  "activeStudyPlanIndex" : 3,
   "manager" : {
     "managers" : [ ]
   },

@@ -3,8 +3,8 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-scale 1024 width
-scale 768 height
+scale 900 width
+scale 673 height
 
 title After command "commit [COMMIT_MESSAGE]"
 
