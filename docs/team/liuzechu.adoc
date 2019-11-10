@@ -52,6 +52,7 @@ local files in JSON format.
 ** Documentation:
 *** Updated the Storage section of the Developer Guide: https://github.com/AY1920S1-CS2103-F09-3/main/pull/314[#314]
 *** Wrote the Glossary of the Developer Guide (see below)
+
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S1-CS2103-F09-3/main/pull/232[#232]
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/LiuZechu/ped/issues/1[1], https://github.com/LiuZechu/ped/issues/3[2], https://github.com/LiuZechu/ped/issues/4[3], https://github.com/LiuZechu/ped/issues/5[4], https://github.com/LiuZechu/ped/issues/7[5])

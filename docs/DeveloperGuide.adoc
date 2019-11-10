@@ -788,6 +788,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 == Use Cases
 
 (For all use cases below, the *System* is the `ModBuddy` and the *Actor* is the `Student`, unless specified otherwise)
+
 // tag::uc01[]
 
 === Use case: UC01 - Create study plan
@@ -810,6 +811,7 @@ Use case ends.
 
 +
 Use case ends.
+
 // end::uc01[]
 
 === Use case: UC02 - Add module
@@ -1151,7 +1153,7 @@ taken at the same time as the student takes that particular module.
 [[year-of-study]] Year of study::
 A student's year refers to whether the student is in their first (Y1), second (Y2), third (Y3), fourth (Y4), or fifth (Y5)
 year of undergraduate studies in NUS.
-
+// end::glossary[]
 
 // [appendix]
 // == Instructions for Manual Testing
