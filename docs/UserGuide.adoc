@@ -86,7 +86,7 @@ Redo the previous undone command. The state of the application will revert back 
 
 Format:  `redo`
 
-//end::undoredo[]
+// end::undoredo[]
 
 ==== Error messages
 Displays a useful error message if the input is invalid. For example,
@@ -112,7 +112,7 @@ Examples:
 * `removemod y2s2 CS3244`
 
 // end::addremovemod[]
-//tag::dataclassificationandmanagement1[]
+// tag::dataclassificationandmanagement1[]
 
 ==== Finding modules using the module code : `findmod`
 Shows which semester the specified module is located at. +
@@ -122,7 +122,7 @@ Examples:
 
 * `findmod cs1101s`
 * `findmod cs2103`
-//end::dataclassificationandmanagement1[]
+// end::dataclassificationandmanagement1[]
 
 ==== Viewing description of a module: `description`
 Shows the description of a particular module, including its prerequisites.
