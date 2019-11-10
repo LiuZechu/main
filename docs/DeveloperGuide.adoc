@@ -299,7 +299,7 @@ causing the modified state of the current active study plan after the execution 
 in the `StudyPlanCommitManager` corresponding to this study plan, inside the `VersionTrackingManager` under
 `ModulePlanner`.
 
-image::CommitStudyPlan.png[height="200"]
+image::CommitStudyPlan.png[height=""300"]
 
 Step 3. The user executes `revert 1.1` to revert to the commit indexed by `1` in the active study plan which
 has an ID of `1`. The `revert` command also calls `Model#revertCommit(int studyPlanIndex, int commitNumber)`,
@@ -317,15 +317,13 @@ and decides to delete that commit by executing the `removecommit` command. The `
 will call `Model#deleteCommit(int studyPlanIndex, int commitNumber)`,
 which will delete the commit specified by the `commitNumber` from the history of the study plan with ID `studyPlanIndex`.
 
-// image::UndoRedoState3.png[]
-
 [NOTE]
 If the commit number entered does not refer to a valid commit (e.g. there is no commit at all or the index is out of bounds),
 no deletion will take place. Instead the user will be prompted by an error message.
 
 The following activity diagram shows how the `removecommit` operation works:
 
-image::DeleteCommitActivityDiagram.png[]
+image::DeleteCommitActivityDiagram.png[height=""400"]
 
 ==== Design Considerations
 
