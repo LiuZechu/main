@@ -294,7 +294,7 @@ image::VersionTrackingClassDiagram.png[]
 Step 2. After changing the state of the current active study plan (e.g. by calling `addmodule y1s1 cs1101s`),
 the user executes `commit first draft` command to save the current state of this study plan with the commit message
 `first draft`. The `commit` command calls `Model#commitActiveStudyPlan(String commitMessage)`,
-causing the modified state of the current active study plan after the `commit first draft command executes to be cloned and saved
+causing the modified state of the current active study plan after the execution of the `commit first draft` command to be cloned and saved
 in the `StudyPlanCommitManager` corresponding to this study plan, inside the `VersionTrackingManager` under
 `ModulePlanner`.
 
