@@ -90,7 +90,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#c4c4c4, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-cell {
@@ -349,10 +349,8 @@
     -fx-background-radius : 2.0em;
 }
 
-.resultView {
-    -fx-background-color: #ffffff;
-    -fx-border-radius: 10 10 10 10;
-    -fx-background-radius: 10 10 10 10;
+#resultView {
+    -fx-background-color: transparent;
 }
 
 #defaultTag {
@@ -408,8 +406,7 @@
 }
 
 #resultDisplay {
-    -fx-background-color: #ffffff;
-    -fx-background-radius: 15;
+    -fx-background-color: transparent;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -429,7 +426,7 @@
 }
 
 #resultHolder {
-    -fx-background-color: #ffffff;
+    -fx-background-color: white;
     -fx-background-radius: 15;
 }
 
@@ -530,7 +527,7 @@
 }
 
 #moduleListView {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
 }
 
 #simpleModuleCardPane {
@@ -574,3 +571,18 @@
     -fx-opacity: 0.9;
 }
 
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}

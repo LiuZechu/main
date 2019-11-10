@@ -28,7 +28,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#101010, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-cell {
@@ -182,10 +182,8 @@
     -fx-background-radius : 2.0em;
 }
 
-.resultView {
+#resultView {
     -fx-background-color: #333333;
-    -fx-border-radius: 10 10 10 10;
-    -fx-background-radius: 10 10 10 10;
 }
 
 #defaultTag {
@@ -242,7 +240,6 @@
 
 #resultDisplay {
     -fx-background-color: #333333;
-    -fx-background-radius: 15;
 }
 
 #resultDisplay .scroll-pane {
@@ -355,7 +352,7 @@
 }
 
 #moduleListView {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
 }
 
 #simpleModuleCardPane {
@@ -399,3 +396,11 @@
     -fx-opacity: 0.9;
 }
 
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
