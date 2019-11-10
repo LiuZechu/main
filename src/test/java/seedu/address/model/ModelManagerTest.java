@@ -101,8 +101,7 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredStudyPlanList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> modelManager.getFilteredStudyPlanList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudyPlanList().remove(0));
     }
 
     @Test

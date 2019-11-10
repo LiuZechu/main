@@ -12,9 +12,9 @@ import seedu.address.model.versiontracking.exception.CommitNotFoundException;
  * Represents a manager that manages the commits for one study plan with a particular index.
  */
 public class StudyPlanCommitManager {
-    private static final Logger logger = LogsCenter.getLogger(StudyPlanCommitManager.class);
 
     public static final String MESSAGE_REVERT_COMMIT = "Revert to: %1$s";
+    private static final Logger logger = LogsCenter.getLogger(StudyPlanCommitManager.class);
 
     private int studyPlanIndex;
     private CommitList commitList;

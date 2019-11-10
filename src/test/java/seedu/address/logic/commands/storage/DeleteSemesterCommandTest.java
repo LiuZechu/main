@@ -81,6 +81,11 @@ public class DeleteSemesterCommandTest {
         assertEquals(expectedSemesters, actualSemesters);
     }
 
+    /**
+     * Generates an expected model for testing, given a semester name.
+     * @param semesterName can be mainstream or non-mainstream
+     * @return expected model which will be used for testing
+     */
     private Model generateExpectedModel(SemesterName semesterName) {
         Model expectedModel = new ModelManager(getTypicalModulePlanner(), new UserPrefs(), getTypicalModulesInfo());
         UniqueSemesterList semesters = new UniqueSemesterList();

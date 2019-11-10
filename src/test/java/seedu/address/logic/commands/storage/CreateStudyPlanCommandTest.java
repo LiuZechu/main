@@ -56,6 +56,11 @@ public class CreateStudyPlanCommandTest {
         assertCreateStudyPlanSuccess(expectedResult, actualResult, expectedModel);
     }
 
+    /**
+     * Generates the expected model given a study plan to be included, for testing.
+     * @param studyPlan to be added to the model
+     * @return the expected model for testing
+     */
     private Model generateExpectedModel(StudyPlan studyPlan) {
         Model expectedModel = new ModelManager(getTypicalModulePlanner(), new UserPrefs(), getTypicalModulesInfo());
         expectedModel.addStudyPlan(studyPlan);
@@ -64,6 +69,11 @@ public class CreateStudyPlanCommandTest {
         return expectedModel;
     }
 
+    /**
+     * Compares and returns true if the two command results have the same preceding feeback to user
+     * (without study plan IDs), and whether they have the same title. This is because no two study plans
+     * have the same unique ID.
+     */
     private void assertCreateStudyPlanSuccess(CommandResult expectedResult, CommandResult actualResult,
                                               Model expectedModel) {
         // compare titles since study plan IDs are unique

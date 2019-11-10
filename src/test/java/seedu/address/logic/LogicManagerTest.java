@@ -21,19 +21,18 @@ import seedu.address.logic.commands.storage.CreateStudyPlanCommand;
 import seedu.address.logic.commands.storage.ListAllStudyPlansCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ModulePlanner;
 import seedu.address.model.ModulesInfo;
 import seedu.address.model.ReadOnlyModulePlanner;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.studyplan.StudyPlan;
 import seedu.address.model.studyplan.Title;
 import seedu.address.storage.JsonModulePlannerStorage;
 import seedu.address.storage.JsonModulesInfoStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.ModulesInfoStorage;
 import seedu.address.storage.StorageManager;
-
-import seedu.address.model.ModelManager;
-import seedu.address.model.studyplan.StudyPlan;
 import seedu.address.testutil.StudyPlanBuilder;
 
 /**

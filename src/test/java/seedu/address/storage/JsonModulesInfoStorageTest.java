@@ -62,6 +62,12 @@ public class JsonModulesInfoStorageTest {
         assertEquals(new ModulesInfo(), actual);
     }
 
+    /**
+     * Tests whether two ModulesInfo objects can be considered equal for the purpose of testing. They are considered
+     * equal if their lists of module info strings are equal position-wise.
+     * @param expected expected String list
+     * @param actual actual String list
+     */
     private void assertModulesInfoEqual(ModulesInfo expected, ModulesInfo actual) {
         List<String> expectedStrings = expected.getModuleCodeStrings();
         List<String> actualStrings = actual.getModuleCodeStrings();

@@ -1,19 +1,18 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-
-import java.util.Collections;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudyPlans.SP_1;
 import static seedu.address.testutil.TypicalStudyPlans.SP_5;
 import static seedu.address.testutil.TypicalStudyPlans.getTypicalModulePlanner;
+
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
