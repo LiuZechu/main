@@ -9,18 +9,6 @@ ifndef::env-github[]
 image::title.png[width="250"]
 endif::[]
 
-ifdef::env-github[]
-image::title.png[width="250"]
-endif::[]
-
-ifdef::env-github[]
-image::../docs/images/Ui.png[width="600"]
-endif::[]
-
-ifndef::env-github[]
-image::../images/Ui.png[width="600"]
-endif::[]
-
 == Overview
 
 CS ModBuddy is a desktop application used for NUS CS undergraduates to plan modules and manage their study plans.
@@ -70,11 +58,6 @@ local files in JSON format.
 
 == Contributions to the User Guide
 
-
-|===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
-|===
-
 include::../UserGuide.adoc[tag=studyplan]
 
 include::../UserGuide.adoc[tag=versiontracking]
@@ -83,16 +66,12 @@ include::../UserGuide.adoc[tag=movingasemester]
 
 == Contributions to the Developer Guide
 
-|===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
-|===
-
 include::../DeveloperGuide.adoc[tag=storage]
 
 include::../DeveloperGuide.adoc[tag=versiontracking]
 
-include::../DeveloperGuide.adoc[tag=uc01]
-
 include::../DeveloperGuide.adoc[tag=uc03]
 
 include::../DeveloperGuide.adoc[tag=glossary]
+\... +
+(For the full version, please refer to https://ay1920s1-cs2103-f09-3.github.io/main/DeveloperGuide.html#glossary[Developer Guide#Glossary])

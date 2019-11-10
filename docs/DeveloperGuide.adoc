@@ -299,7 +299,7 @@ causing the modified state of the current active study plan after the execution 
 in the `StudyPlanCommitManager` corresponding to this study plan, inside the `VersionTrackingManager` under
 `ModulePlanner`.
 
-image::CommitStudyPlan.png[]
+image::CommitStudyPlan.png[height="200"]
 
 Step 3. The user executes `revert 1.1` to revert to the commit indexed by `1` in the active study plan which
 has an ID of `1`. The `revert` command also calls `Model#revertCommit(int studyPlanIndex, int commitNumber)`,
@@ -790,12 +790,13 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 (For all use cases below, the *System* is the `ModBuddy` and the *Actor* is the `Student`, unless specified otherwise)
 // tag::uc01[]
+
 === Use case: UC01 - Create study plan
 
 *MSS*
 
 1. User chooses to create a study plan.
-2. User enters the requested description.
+2. User enters the title of the study plan.
 3. ModBuddy displays the new study plan.
 
 +
@@ -804,13 +805,14 @@ Use case ends.
 *Extensions*
 
 [none]
-* 2a. User chooses not to enter a description.
-** 2a1. ModBuddy creates a new study plan with a default description.
-** 2a2. Use case resumes from step 4.
+* 2a. User chooses not to enter a title.
+** 2a1. ModBuddy creates a new study plan with a default title.
+** 2a2. Use case resumes from step 3.
 
 +
 Use case ends.
 // end::uc01[]
+
 === Use case: UC02 - Add module
 
 *MSS*
@@ -837,7 +839,7 @@ Use case ends.
 
 *MSS*
 
-1. Student requests to save the current version of the study plan
+1. Student requests to save the current version of the study plan.
 2. ModBuddy confirms that the version has been saved.
 +
 Use case ends.
@@ -1030,6 +1032,8 @@ the Focus Area. The ten Focus Areas are listed below:
 ** Programming Languages
 ** Software Engineering
 
+// end::glossary[]
+
 [[graduation]] Graduation::
 To graduate from NUS CS means to complete all the stipulated requirements within the user's candidature period,
 and finish their studies with a Bachelor's degree.
@@ -1144,7 +1148,7 @@ taken at the same time as the student takes that particular module.
 [[year-of-study]] Year of study::
 A student's year refers to whether the student is in their first (Y1), second (Y2), third (Y3), fourth (Y4), or fifth (Y5)
 year of undergraduate studies in NUS.
-// end::glossary[]
+
 
 // [appendix]
 // == Instructions for Manual Testing
