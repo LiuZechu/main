@@ -795,7 +795,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 == Use Cases
 
 (For all use cases below, the *System* is the `ModBuddy` and the *Actor* is the `Student`, unless specified otherwise)
-
+// tag::uc01[]
 === Use case: UC01 - Create study plan
 
 *MSS*
@@ -816,7 +816,7 @@ Use case ends.
 
 +
 Use case ends.
-
+// end::uc01[]
 === Use case: UC02 - Add module
 
 *MSS*
@@ -838,6 +838,7 @@ Steps 1a1-1a2 are repeated until the data entered are correct.
 +
 Use case ends.
 
+// tag::uc03[]
 === Use case: UC03 - Commit a study plan
 
 *MSS*
@@ -854,6 +855,7 @@ Use case ends.
 ** 1a1. ModBuddy informs Student that the current version has already been saved.
 +
 Use case ends.
+// end::uc03[]
 
 // tag::tagusecase[]
 
@@ -946,6 +948,7 @@ Use case ends.
 .  The product should be free for all NUS CS undergraduate students.
 .  Should warn the user that the developers will not be held liable for any failure to graduate within normal candidature period due to the use of the product.
 
+// tag::glossary[]
 [appendix]
 == Glossary
 
@@ -1051,6 +1054,10 @@ of time, usually one semester. Students may be granted leave of absence for the 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X.
 
+[[mainstream-semester]] Mainstream semester::
+Semesters 1 and 2 in Years 1, 2, 3 and 4. These are the default semesters for a CS single-degree undergraduate.
+In contrast, a _non-mainstream semester_ is a special term (e.g. Y1ST1) or a Year 5 semester (e.g. Y5S1).
+
 [[major]] Major::
 An academic major is the academic discipline to which an undergraduate student formally commits. A student who
 successfully completes all modules required for the major qualifies for an undergraduate degree.
@@ -1143,7 +1150,7 @@ taken at the same time as the student takes that particular module.
 [[year-of-study]] Year of study::
 A student's year refers to whether the student is in their first (Y1), second (Y2), third (Y3), fourth (Y4), or fifth (Y5)
 year of undergraduate studies in NUS.
-
+// end::glossary[]
 
 // [appendix]
 // == Instructions for Manual Testing
