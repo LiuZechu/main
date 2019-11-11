@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.cli;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_STUDY_PLAN;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -13,7 +14,7 @@ import seedu.address.model.semester.SemesterName;
  */
 public class UnblockCurrentSemesterCommand extends Command {
     public static final String COMMAND_WORD = "unblock";
-    public static final String HELP_MESSAGE = COMMAND_WORD + ": Unblocks the given semester.";
+    public static final String HELP_MESSAGE = COMMAND_WORD + ": Unblocks the given semester";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Unblocks the given semester. \n. "
             + "Parameters: "
@@ -31,6 +32,10 @@ public class UnblockCurrentSemesterCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getActiveStudyPlan() == null) {
+            throw new CommandException(MESSAGE_NO_STUDY_PLAN);
+        }
 
         if (!model.getSemester(sem).isBlocked()) {
             throw new CommandException("Semester is not blocked");

@@ -1,4 +1,4 @@
-= CSmodbuddy - Developer Guide
+= CS ModBuddy - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -24,6 +24,7 @@ Refer to the guide <<SettingUp#, here>>.
 
 == Design
 
+// tag::architecture[]
 [[Design-Architecture]]
 === Architecture
 
@@ -70,6 +71,7 @@ image::ArchitectureSequenceDiagram.png[]
 
 The sections below give more details of each component.
 
+// end::architecture[]
 // tag::Ui[]
 [[Design-Ui]]
 === UI component
@@ -105,7 +107,7 @@ link:{repoURL}/blob/master/src/main/java/seedu/address/logic/Logic.java[`Logic.j
 
 .  `Logic` uses the `modulePlannerParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person).
+.  The command execution can affect the `Model` (e.g. adding a module).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying information to the user or refreshing the Ui.
 
@@ -225,7 +227,7 @@ image::CommitActivityDiagram.png[]
 ** Pros: Easier to implement.
 ** Cons: May have performance issues in terms of memory usage. Need to take note of the implications of cloning all the objects.
 * **Alternative 2:** Implement redo/undo for every single command.
-** Pros: Will use less memory (e.g. for `removemod`, just save the person being deleted).
+** Pros: Will use less memory (e.g. for `removemod`, just save the module being deleted).
 ** Cons: Tedious because there are a lot of commands and we must ensure that the implementation of each individual command are correct.
 
 // end::undoredo[]
@@ -1310,3 +1312,51 @@ The study plan with the ID `2` will be displayed in the left panel as a simplifi
 . Editing the title
 .. Prerequisite
 ... There is at least one study plan. (There is a current active plan)
+
+
+
+=== Executing information and verification-related commands
+
+. Checking for study plan requirements
+.. Prerequisite
+... There must be an active study plan.
+.. Test case: `check` +
+Expected:
+The study plan requirements for your current study plan should be checked based on 3 criteria:
+total MC count of the study plan (both completed and uncompleted), number of core modules taken,
+and number of focus area primaries taken. The study plan satisfies graduation requirements only if
+all 3 criteria are met.
+
+. Describing a module
+.. Test case: `description CS1101S`
+Expected:
+It should show the description of CS1101S, including module name, MC count, S/U-ability, prerequisites,
+and more.
+
+. Showing focus area primary modules
+.. Test case: `showfocus`
+Expected:
+It should show a list of all focus area primary modules in the left panel, regardless
+of whether they are in the study plan or not.
+
+. Showing core modules
+.. Test case: `showcore`
+Expected:
+It should show a list of all core modules in the left panel, regardless of whether
+they are already in the study plan or not.
+
+. Clearing all invalid modules
+.. Prerequisite
+... There should be modules in the right panel that are invalid, in that not all prerequisites
+have been satisfied.
+.. Test case: `clearinvalidmods`
+Expected:
+It should remove all modules that are invalid in the right panel. Note that this can
+cause new modules to become invalid as well.
+
+. Show valid modules
+.. Test case: `validmods y1s1`
+Expected:
+It should show all valid modules that can be taken in Y1S1. Note that this may include
+the dissertation and internship, as their prerequisites are not expressible in terms
+of prerequisite modules.
