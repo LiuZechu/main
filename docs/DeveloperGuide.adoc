@@ -1308,3 +1308,5 @@ Expected:
 The study plan with the ID `2` will be displayed in the left panel as a simplified view.
 
 . Editing the title
+.. Prerequisite
+... There is at least one study plan. (There is a current active plan)
