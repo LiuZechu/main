@@ -1418,8 +1418,8 @@ The state of the study plan represented by the specified commit will be shown on
 
 . Reverting to a commit
 .. Prerequisite
-... There is at least one study plan. (i.e. There is a current active study plan). And there is at least one
-commit in its commit history.
+... There is at least one study plan. (i.e. There is a current active study plan)
+... There is at least one commit in its commit history.
 .. Test case: `revert` followed by the commit number e.g. `revert 1.1`. You can check the number using `history` +
 Expected:
 The state of the study plan represented by the specified commit will be activated and shown on the right panel
@@ -1427,8 +1427,8 @@ of the GUI. If you enter `history`, you will see a new `Revert to ...` commit be
 
 . Removing a commit
 .. Prerequisite
-... There is at least one study plan. (i.e. There is a current active study plan). And there is at least one
-commit in its commit history.
+... There is at least one study plan. (i.e. There is a current active study plan)
+... There is at least one commit in its commit history.
 .. Test case: `removecommit` followed by the commit number e.g. `removecommit 1.1`. You can check the number using `history` +
 Expected:
 The specified commit will be removed from the commit history permanently. If you enter `history`,
