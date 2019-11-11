@@ -1004,8 +1004,8 @@ as data in the form of programs. In particular, CS here refers to the course for
 Science (with Honours) offered by School of Computing (SoC), National University of Singapore (NUS).
 
 [[current-semester]] Current Semester::
-The semester in which the user is currently taking modules. All modules taken in and before the current semester are locked
-and uneditable. The user may manipulate modules after the current semester.
+The semester in which the user is currently taking modules. All modules taken before the current semester are considered
+completed.
 
 [[default-study-plan]] Default study plan::
 The recommended study plan for a CS freshman, pre-populated with core modules arranged in their recommended semesters of
