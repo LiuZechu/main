@@ -1109,7 +1109,8 @@ the module instructor or the Department academic advisor regarding the acceptabl
 
 [[semester]] Semester::
 An academic year in NUS consists of two regular semesters, each spanning 13 weeks excluding the recess and reading
-weeks. In our application, a semester is defined as a regular semester (as opposed to special semesters).
+weeks. In our application, a semester can be either a mainstream semester (see above) or a special semester (usually
+during summer).
 
 [[student]] Student::
 Our application is specifically targeted to students who study Computer Science (CS) in the School of
